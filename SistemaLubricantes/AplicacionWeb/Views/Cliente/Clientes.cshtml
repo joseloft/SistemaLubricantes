@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewBag.Title = "Clientes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<div class="card">
+    
+    <div class="card-header" style="background-color: darkslategrey; color: white">
+        <i class="fas fa-users m-1"></i> LISTA DE CLIENTES
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12">
+                <button type="button" class="btn btn-success" onclick="ModalCliente(null)">Nuevo cliente</button>
+            </div>
+        </div>
+        <br />
+        <div class="table-responsive">
+            <table id="tblClientes" class="table table-cebra table-bordered table-hover table-striped" style="width: 100%">
+                <thead style="background-color: #13213d !important; color: white; font-size: 14px;">
+                    <tr style="font-size: 14px;">
+                        <th style='max-width:45px;min-width:45px;text-align:center'>Accion</th>
+                        <th style='text-align:center'>Nombres</th>
+                        <th style='text-align:center'>Apellidos</th>
+                        <th style='text-align:center'>Direccion</th>
+                        <th style='text-align:center'>Distrito</th>
+                        <th style='text-align:center'>Celular</th>
+                        <th style='text-align:center'>Correo</th>
+                        <th style='text-align:center'>RUC/DNI</th>
+                    </tr>
+                </thead>
+                <tbody style="font-size:12px">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="FormModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: darkslategrey; color: white">
+                <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-user-check"></i> NUEVO CLIENTE</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input id="txtid" type="hidden" value="0" /> @* codigo de cliente*@
+                <div class="row g-2">
+                    <div class="col-sm-6">
+                        <label for="txtnombres" class="form-label">Nombres</label>
+                        <input type="text" class="form-control form-control-sm" id="txtnombres">
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="txtapellidos" class="form-label">Apellidos</label>
+                        <input type="text" class="form-control form-control-sm" id="txtapellidos">
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="txtdireccion" class="form-label">Direccion</label>
+                        <input type="text" class="form-control form-control-sm" id="txtdireccion">
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="txtdistrito" class="form-label">Distrito</label>
+                        <input type="text" class="form-control form-control-sm" id="txtdistrito">
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="txttelefono" class="form-label">Telefono</label>
+                        <input type="text" class="form-control form-control-sm" id="txttelefono">
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="txtcelular" class="form-label">Celular</label>
+                        <input type="text" class="form-control form-control-sm" id="txtcelular">
+                    </div>
+                    <div class="col-sm-12">
+                        <label for="txtcorreo" class="form-label">Correo</label>
+                        <input type="text" class="form-control form-control-sm" id="txtcorreo">
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="txtdni" class="form-label">DNI</label>
+                        <input type="text" class="form-control form-control-sm" id="txtdni">
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="txtruc" class="form-label">RUC</label>
+                        <input type="text" class="form-control form-control-sm" id="txtruc">
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <div id="MensajeError" class="alert alert-danger" role="alert">
+                            A simple danger alert—check it out!
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" onclick="GuardarCliente()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/View/Cliente/Cliente.js"></script>

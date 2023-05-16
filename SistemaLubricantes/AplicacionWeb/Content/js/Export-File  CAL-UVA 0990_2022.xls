@@ -1,0 +1,49 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><meta http-equiv="content-type" content="application/vnd.ms-excel; charset=utf-8"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>PackingList</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>																																																		
+    <thead>
+        <tr>
+
+
+            <td style="font-size: 12px; border: 0.6px solid;background-color:#B2D7E5; color:black"><b>Vessel Name</b></td>
+            <td style="font-size: 12px; border: 0.6px solid;background-color:#B2D7E5; color:black"><b>Estimated departure date</b></td>
+            <td style="font-size: 12px; border: 0.6px solid;background-color:#B2D7E5; color:black"><b>Estimated Shipping date</b></td>
+            <td style="font-size: 12px; border: 0.6px solid;background-color:#B2D7E5; color:black"><b>Region</b></td>
+            <td style="font-size: 12px; border: 0.6px solid;background-color:#B2D7E5; color:black"><b>Port Of Origen</b></td>
+            <td style="font-size: 12px; border: 0.6px solid;background-color:#B2D7E5; color:black"><b>Destination Port</b></td>
+
+            
+
+            <td style="font-size: 12px; border: 0.6px solid;background-color:#B2D7E5; color:black"><b>Shipping Line</b></td>
+            <td style="font-size: 12px; border: 0.6px solid;background-color:#B2D7E5; color:black"><b>Exportador</b></td>
+            <td style="font-size: 12px; border: 0.6px solid;background-color:#B2D7E5; color:black"><b>BL Number</b></td>
+            <td style="font-size: 12px; border: 0.6px solid;background-color:#B2D7E5; color:black"><b>Pallet Number</b></td>
+            <td style="font-size: 12px; border: 0.6px solid;background-color:#B2D7E5; color:black"><b>Pallet T°-Temp Recorder</b></td>
+            <td style="font-size: 12px; border: 0.6px solid;background-color:#B2D7E5; color:black"><b>Container Seal</b></td>
+            <td style="font-size: 12px; border: 0.6px solid;background-color:#B2D7E5; color:black"><b>Grower Area Code </b></td>
+            <td style="font-size: 12px; border: 0.6px solid;background-color:#B2D7E5; color:black"><b>Code Grower </b></td>
+            <td style="font-size: 12px; border: 0.6px solid;background-color:#B2D7E5; color:black"><b>Grower Name </b></td>
+            <td style="font-size: 12px; border: 0.6px solid;background-color:#B2D7E5; color:black"><b>Number of Boxes </b></td>
+            <td style="font-size: 12px; border: 0.6px solid;background-color:#B2D7E5; color:black"><b>Container Number </b></td>
+            <td style="font-size: 12px; border: 0.6px solid;background-color:#B2D7E5; color:black"><b>Pack Description </b></td>
+            <td style="font-size: 12px; border: 0.6px solid;background-color:#B2D7E5; color:black"><b>Comm.Descrip </b></td>
+            <td style="font-size: 12px; border: 0.6px solid;background-color:#B2D7E5; color:black"><b>Variety Descrip </b></td>
+            <td style="font-size: 12px; border: 0.6px solid;background-color:#B2D7E5; color:black"><b>Net Per Box</b></td>
+            <td style="font-size: 12px; border: 0.6px solid;background-color:#B2D7E5; color:black"><b>Box Brand </b></td>
+            <td style="font-size: 12px; border: 0.6px solid;background-color:#B2D7E5; color:black"><b>Label </b></td>
+            <td style="font-size: 12px; border: 0.6px solid;background-color:#B2D7E5; color:black"><b>Pack Style</b></td>
+            <td style="font-size: 12px; border: 0.6px solid;background-color:#B2D7E5; color:black"><b>Size Code </b></td>
+            <td style="font-size: 12px; border: 0.6px solid;background-color:#B2D7E5; color:black"><b>Packing Name </b></td>
+            <td style="font-size: 12px; border: 0.6px solid;background-color:#B2D7E5; color:black"><b>Packing Address</b></td>
+            <td style="font-size: 12px; border: 0.6px solid;background-color:#B2D7E5; color:black"><b>Pack Code </b></td>
+            <td style="font-size: 12px; border: 0.6px solid;background-color:#B2D7E5; color:black"><b>FDA#					 </b></td>
+            <td style="font-size: 12px; border: 0.6px solid;background-color:#B2D7E5; color:black"><b>Packing Date	 </b></td>
+            <td style="font-size: 12px; border: 0.6px solid;background-color:#B2D7E5; color:black"><b>GS1						 </b></td>
+            <td style="font-size: 12px; border: 0.6px solid;background-color:#B2D7E5; color:black"><b>Cold treatment initial date	 </b></td>
+            <td style="font-size: 12px; border: 0.6px solid;background-color:#B2D7E5; color:black"><b> GTIN </b></td>
+            <td style="font-size: 12px; border: 0.6px solid;background-color:#B2D7E5; color:black"><b>  Grade Code </b></td>
+
+
+
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>	</body></html>

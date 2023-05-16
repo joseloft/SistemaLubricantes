@@ -1,43 +1,194 @@
-﻿<!DOCTYPE html>
+﻿ <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimum-scale=1.0">
+    <title>EL TUMI</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="~/Images/logoWeb.png">
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/Scripts/View/Shared/Layout.js"></script>
+
+    <style>
+        .nav .nav-link:hover,
+        .nav .nav-link:focus,
+        .nav .nav-link:active {
+            text-decoration: none;
+            background: #0d6efd;
+            transition: 0.5s;
+        }
+
+        .tipoCambio {
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Nombre de la aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+<body class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark" style="background-color: #091429">
+        <!-- Navbar Brand-->
+        <a class="navbar-brand" href="index.html" style="padding-top:3px">
+            <img class="" src="~/images/tumiBanner.png" alt="">
+        </a>
+        <!-- Sidebar Toggle-->
+        <button class="btn btn-link btn-lg order-1 order-lg-0 me-4 me-lg-0 text-white" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+        <!-- Navbar T.C.-->
+        <b><span style="font-size:18px;color:white">&nbsp;@DateTime.Now.DayOfWeek&nbsp;@DateTime.Now.ToShortDateString()&nbsp;@DateTime.Now.ToString("HH:mm:ss")</span></b>
+        <form class="tipoCambio">
+            <div class="input-group">
+                <label class="form-control form-control-sm" style="color:white;text-align:center;background-color:transparent;border:hidden;font-size:20px"><b>T.C.</b></label>
+                <label class="form-control form-control-sm" id="lblTipoCambio" style="color:white;text-align:center;background-color:transparent;border:hidden;font-size:20px"><b>3.68</b></label>
+                &nbsp&nbsp&nbsp<button class="btn btn-success rounded-circle" onclick="abrirModalTC()" type="button"><i class="fas fa-plus"></i></button>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
-                </ul>
+        </form>
+        <!-- Navbar-->
+        <ul class="navbar-nav ms-auto me-0 me-md-3 my-2 my-md-0">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-primary" id="userDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-user fa-primary"></i>
+                    <span class="mr-2 d-none d-lg-inline text-white" style="color:#13213d; font-size:15px;font-variant-numeric:tabular-nums;text-align:center;text-transform: capitalize;">JOSELO</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown" style="right: 0; left: auto;height:auto;">
+                    <a class="dropdown-item d-flex align-items-center" href="#" data-toggle="modal" data-target="#logoutModal">
+                        <div class="mr-3">
+                            <div class="icon-circle" style="background-color:#13213d;">
+                                <i class="fas fa-sign-out-alt text-white"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="font-weight-bold">Cerrar Sesión</span>
+                        </div>
+                    </a>
+                    <a class="dropdown-item d-flex align-items-center" href="#" onclick="ClearCache()">
+                        <div class="mr-3">
+                            <div class="icon-circle" style="background-color:#13213d;">
+                                <i class="fas fa-trash-alt text-white"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="font-weight-bold">Limpiar historial</span>
+                        </div>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion" style="background-color: #091429;font-size:13px">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <br />
+                        <a class="nav-link text-white" href="index.html">
+                            <div class="sb-nav-link-icon text-white"><i class="fas fa-truck"></i></div>
+                            COMPRAS
+                        </a>
+                        <a class="nav-link text-white" href="@Url.Action("Ventas","Venta")">
+                            <div class="sb-nav-link-icon text-white"><i class="fas fa-store"></i></div>
+                            VENTAS
+                        </a>
+                        <a class="nav-link text-white" href="@Url.Action("Clientes","Cliente")">
+                            <div class="sb-nav-link-icon text-white"><i class="fas fa-user-plus"></i></div>
+                            CLIENTES
+                        </a>
+                        <a class="nav-link text-white" href="index.html">
+                            <div class="sb-nav-link-icon text-white"><i class="fas fa-cash-register"></i></div>
+                            CAJA
+                        </a>
+                        <a class="nav-link text-white" href="index.html">
+                            <div class="sb-nav-link-icon text-white"><i class="fas fa-oil-can"></i></div>
+                            PRODUCTOS
+                        </a>
+                        <a class="nav-link collapsed text-white" href="#" data-bs-toggle="collapse" data-bs-target="#collapseReport" aria-expanded="false" aria-controls="collapseReport">
+                            <i class="fas fa-chart-line"></i><span>&nbsp&nbspREPORTES</span>
+                            <div class="sb-sidenav-collapse-arrow text-white"><i class="fas fa-caret-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseReport" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link text-white" href="login.html">VENTAS DEL DIA</a>
+                                <a class="nav-link text-white" href="login.html">CLIENTE MAS COMPRADOR</a>
+                                <a class="nav-link text-white" href="register.html">PRODUCTOS TOP</a>
+                                <a class="nav-link text-white" href="register.html">CREDITOS PENDIENTES</a>
+                                <a class="nav-link text-white" href="register.html">CONSULTA DE VENTAS</a>
+                            </nav>
+                        </div>
+                        <a class="nav-link text-white" href="index.html">
+                            <div class="sb-nav-link-icon text-white"><i class="fas fa-chart-pie"></i></div>
+                            INDICADORES
+                        </a>
+                        <a class="nav-link collapsed text-white" href="#" data-bs-toggle="collapse" data-bs-target="#collapseSesion" aria-expanded="false" aria-controls="collapseSesion">
+                            <i class="fas fa-user-lock"></i><span>&nbsp&nbspSESIONES</span>
+                            <div class="sb-sidenav-collapse-arrow text-white"><i class="fas fa-caret-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseSesion" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link text-white" href="401.html">SESIONES DE USUARIO</a>
+                                <a class="nav-link text-white" href="404.html">SESIONES DE CAJA</a>
+                            </nav>
+                        </div>
+                        <a class="nav-link text-white" href="tables.html">
+                            <div class="sb-nav-link-icon text-white"><i class="fas fa-users"></i></div>
+                            USUARIOS
+                        </a>
+                        <a class="nav-link text-white" href="tables.html">
+                            <div class="sb-nav-link-icon text-white"><i class="fas fa-table"></i></div>
+                            UTILITARIOS
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    @RenderBody()
+                </div>
+            </main>
+            <footer class="footer-copyright-area" style="background-color: #071b42;color:white;padding-top:15px">
+                <div class="container-fluid">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <p>Copyright © Designed &amp; Developed by <a href="#" target="_blank">SQUAD-T</a> 2023</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalTipoCambio" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center" style="background-color: darkslategrey;color:white">
+                    <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-dollar-sign"></i>   Tipo de Cambio</h5>
+                    <button type="button" class="btn-close btn-light" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
+                            <input id="txtTipoCambio" type="number" class="form-control" style="text-align:right" placeholder="Ingrese nuevo cambio" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="GuardarTipoCambio()">Guardar</button>
+                </div>
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
-        </footer>
-    </div>
 
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/complementos")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
+
 </html>
