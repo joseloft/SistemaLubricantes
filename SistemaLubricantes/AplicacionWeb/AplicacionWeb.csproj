@@ -122,6 +122,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\VentaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -130,6 +131,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap4.4.1\bootstrap.min.css" />
     <Content Include="Content\Config.js" />
     <Content Include="Content\css\all.css" />
     <Content Include="Content\css\all.min.css" />
@@ -151,6 +153,7 @@
     <Content Include="Content\css\bootstrap.rtl.min.css" />
     <Content Include="Content\css\brands.css" />
     <Content Include="Content\css\brands.min.css" />
+    <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.min.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap4.css" />
@@ -320,6 +323,10 @@
     <Content Include="Content\css\v4-shims.min.css" />
     <Content Include="Content\js\jquery-3.7.0.min.js" />
     <Content Include="Content\js\scripts.js" />
+    <Content Include="Content\loadingoverlay\loadingoverlay.min.js" />
+    <Content Include="Content\css\sweetalert.css" />
+    <Content Include="Content\login\animate-custom.css" />
+    <Content Include="Content\login\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\css\Site.css" />
@@ -355,6 +362,10 @@
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
     <None Include="Content\js\jquery-3.4.1.intellisense.js" />
+    <Content Include="Images\logoOficial.png" />
+    <Content Include="Images\logoTumi.png" />
+    <Content Include="Images\logoWeb.png" />
+    <Content Include="Images\tumiBanner.png" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap4.js" />
@@ -455,8 +466,10 @@
     <Content Include="Content\js\jquery.validate.unobtrusive.js" />
     <Content Include="Content\js\jquery.validate.unobtrusive.min.js" />
     <Content Include="Content\js\modernizr-2.8.3.js" />
+    <Content Include="Content\js\sweetalert.min.js" />
     <Content Include="Scripts\View\Cliente\Cliente.js" />
     <Content Include="Scripts\View\Shared\Layout.js" />
+    <Content Include="Scripts\View\Venta\Venta.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -486,12 +499,11 @@
     <Content Include="webfonts\fa-brands-400.eot" />
     <Content Include="Views\Cliente\Clientes.cshtml" />
     <Content Include="Views\Venta\Ventas.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\" />
     <Folder Include="Scripts\View\Home\" />
-    <Folder Include="Scripts\View\Venta\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

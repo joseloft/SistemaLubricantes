@@ -15,6 +15,8 @@ namespace AplicacionWeb
                         "~/Content/fontawesome/all.min.js",
                         "~/Scripts/DataTables/jquery.dataTables.js",
                         "~/Scripts/DataTables/dataTables.responsive.js",
+                        "~/Content/loadingoverlay/loadingoverlay.min.js",
+                        "~/Content/js/sweetalert.min.js",
                         "~/Content/js/scripts.js"));
 
             //bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -32,7 +34,8 @@ namespace AplicacionWeb
                       //"~/Content/bootstrap.css",
                       "~/Content/css/site.css",
                       "~/Content/DataTables/css/jquery.DataTables.css",
-                      "~/Content/DataTables/css/responsive.DataTables.css"));
+                      "~/Content/DataTables/css/responsive.DataTables.css",
+                      "~/Content/css/sweetalert.css"));
         }
     }
 }

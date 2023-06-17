@@ -26,7 +26,7 @@ namespace AccesoDatos.Clientes.Implementacion
             try
             {
                 objCnx = new SqlConnection(this.context);
-                using (var objCmd = new SqlCommand("[dbo].[lista_clientes]", objCnx))
+                using (var objCmd = new SqlCommand("[dbo].[sp_listar_clientes]", objCnx))
                 {
                     objCmd.CommandType = CommandType.StoredProcedure;
                     objCnx.Open();
@@ -59,63 +59,115 @@ namespace AccesoDatos.Clientes.Implementacion
 
             return bRsl;
         }
-        public bool GuardarClientes(EntidadCliente entidadCliente)
+        public bool GuardarClientes(EntidadCliente objCliente, out string mensaje)
         {
+            objCliente.ReplaceNull();
             SqlConnection objCnx = null;
             var bRsl = false;
+            mensaje = "";
             try
             {
                 objCnx = new SqlConnection(this.context);
-                using (var objCmd = new SqlCommand("sp_registro_cliente_web", objCnx))
+                using (var objCmd = new SqlCommand("[dbo].[sp_registrar_cliente]", objCnx))
                 {
                     objCmd.CommandType = CommandType.StoredProcedure;
 
                     SqlParameter Pnombres = new SqlParameter("@Pnombres", SqlDbType.VarChar, 100);
-                    Pnombres.Value = entidadCliente.nombres;
+                    Pnombres.Value = objCliente.nombres;
                     objCmd.Parameters.Add(Pnombres);
 
                     SqlParameter Papellidos = new SqlParameter("@Papellidos", SqlDbType.VarChar, 100);
-                    Papellidos.Value = entidadCliente.apellidos;
+                    Papellidos.Value = objCliente.apellidos;
                     objCmd.Parameters.Add(Papellidos);
 
-                    SqlParameter Pdireccion = new SqlParameter("@Pdireccion", SqlDbType.VarChar, 100);
-                    Pdireccion.Value = entidadCliente.direccion;
-                    objCmd.Parameters.Add(Pdireccion);
-
                     SqlParameter Pdistrito = new SqlParameter("@Pdistrito", SqlDbType.VarChar, 100);
-                    Pdistrito.Value = entidadCliente.distrito;
+                    Pdistrito.Value = objCliente.distrito;
                     objCmd.Parameters.Add(Pdistrito);
 
+                    SqlParameter Pdireccion = new SqlParameter("@Pdireccion", SqlDbType.VarChar, 100);
+                    Pdireccion.Value = objCliente.direccion;
+                    objCmd.Parameters.Add(Pdireccion);                    
+
                     SqlParameter Pcelular = new SqlParameter("@Pcelular", SqlDbType.Char, 9);
-                    Pcelular.Value = entidadCliente.celular;
+                    Pcelular.Value = objCliente.celular;
                     objCmd.Parameters.Add(Pcelular);
 
                     SqlParameter Pcorreo = new SqlParameter("@Pcorreo", SqlDbType.VarChar, 100);
-                    Pcorreo.Value = entidadCliente.correo;
+                    Pcorreo.Value = objCliente.correo;
                     objCmd.Parameters.Add(Pcorreo);
 
                     SqlParameter Ptelefono = new SqlParameter("@Ptelefono", SqlDbType.Char, 9);
-                    Ptelefono.Value = entidadCliente.telefono;
+                    Ptelefono.Value = objCliente.telefono;
                     objCmd.Parameters.Add(Ptelefono);
 
-                    SqlParameter Pruc = new SqlParameter("@Pruc", SqlDbType.VarChar, 11);
-                    Pruc.Value = entidadCliente.ruc;
-                    objCmd.Parameters.Add(Pruc);
-
-                    SqlParameter Pdni = new SqlParameter("@Pdni", SqlDbType.Int);
-                    Pdni.Value = entidadCliente.dni;
+                    SqlParameter Pdni = new SqlParameter("@Pdni", SqlDbType.Char, 8);
+                    Pdni.Value = objCliente.dni;
                     objCmd.Parameters.Add(Pdni);
+
+                    SqlParameter Pruc = new SqlParameter("@Pruc", SqlDbType.Char, 11);
+                    Pruc.Value = objCliente.ruc;
+                    objCmd.Parameters.Add(Pruc);                                       
 
                     objCnx.Open();
                     var dtr = objCmd.ExecuteReader();
                     if (!dtr.HasRows)
                     {
+                        mensaje = "";
                         return bRsl;
                     }
                     while (dtr.Read())
                     {
                         bRsl = true;
+                        mensaje = dtr[0].ToString();
                     }
+
+                }
+            }
+            catch (System.Exception ex)
+            {
+                throw; //new System.Exception(ex.Message);
+            }
+            finally
+            {
+                try
+                {
+                    if (objCnx != null && objCnx.State == ConnectionState.Open)
+                    {
+                        objCnx.Close();
+                    }
+                }
+                catch (System.Exception)
+                {
+
+                }
+            }
+
+            return bRsl;
+        }
+        public bool BuscarClientes(string cod_cliente, string documento, string placa, out DataTable objDtt)
+        {
+            cod_cliente = cod_cliente ?? "";
+            documento = documento ?? "";
+            placa = placa ?? "";
+            SqlConnection objCnx = null;
+            SqlDataReader objDtr = null;
+            var bRsl = false;
+            try
+            {
+                objCnx = new SqlConnection(this.context);
+                using (var objCmd = new SqlCommand("[dbo].[sp_buscar_clientes]", objCnx))
+                {
+                    objCmd.CommandType = CommandType.StoredProcedure;
+                    objCmd.Parameters.Add("@Pcod_cliente", SqlDbType.Char, 8).Value = cod_cliente;
+                    objCmd.Parameters.Add("@Pdocumento", SqlDbType.VarChar, 11).Value = documento;
+                    objCmd.Parameters.Add("@Pplaca", SqlDbType.VarChar, 10).Value = placa;
+
+                    objCnx.Open();
+                    objDtr = objCmd.ExecuteReader();
+                    var _objDtt = new DataTable();
+                    _objDtt.Load(objDtr);
+                    objDtt = _objDtt;
+                    bRsl = true;
 
                 }
             }

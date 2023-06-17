@@ -13,7 +13,7 @@ $(function () {
 });
 
 function listarClientes() {
-
+    $.LoadingOverlay("show");
     var urlApi = "api/clientes/ListarClientes";
     $("table#tblClientes").DataTable().destroy();
 
@@ -66,6 +66,7 @@ function listarClientes() {
             
         }
     });
+    $.LoadingOverlay("hide");
 }
 
 function ModalCliente(json) {
@@ -115,9 +116,9 @@ function GuardarCliente() {
     }
 
     jQuery.ajax({
-        url: '@Url.Action("CrearEditarCliente", "Cliente")',
+        url: "https://localhost:44380/api/clientes/GuardarClientes",
         type: "POST",
-        data: JSON.stringify({ objeto: cliente }),
+        data: JSON.stringify(cliente),
         dataType: "json",
         contentType: "application/json; charset=utf-8",
         success: function (data) {
@@ -127,12 +128,12 @@ function GuardarCliente() {
                     cliente.cod_cliente = data.resultado;
                     tabladata.row.add(cliente).draw(false);
                     $("#FormModal").modal("hide");
+                    listarClientes();
                 }
                 else {
                     $("#MensajeError").text(data.mensaje);
                     $("#MensajeError").show();
                 }
-
             }
 
         },
