@@ -4,6 +4,9 @@ using Microsoft.Extensions.Configuration;
 using Entidades.Clientes;
 using System.Collections.Generic;
 using System.Data;
+using AccesoDatos.Home.Implementacion;
+using Entidades.Home;
+using System;
 
 namespace LogicaNegocio.Clientes.Implemetacion
 {
@@ -48,9 +51,34 @@ namespace LogicaNegocio.Clientes.Implemetacion
             }
             return bRsl;
         }
-        public bool GuardarClientes(EntidadCliente entidadCliente)
+        public bool GuardarClientes(EntidadCliente objCliente, out string mensaje)
         {
-            return _clientesDatos.GuardarClientes(entidadCliente);
+            return _clientesDatos.GuardarClientes(objCliente, out mensaje);
+        }
+        public bool BuscarClientes(string cod_cliente, string documento, string placa, out EntidadFiltroCliente objFiltro)
+        {
+            DataTable objDtt = null;
+            var bRsl = _clientesDatos.BuscarClientes(cod_cliente, documento, placa, out objDtt);
+            if (!bRsl)
+            {
+                objFiltro = null;
+                return bRsl;
+            }
+            objFiltro = new EntidadFiltroCliente();
+            EntidadFiltroCliente objTC = null;
+            foreach (DataRow dataRow in objDtt.Rows)
+            {
+                objTC = new EntidadFiltroCliente()
+                {
+                    cod_cliente = dataRow["cod_cliente"].ToString(),
+                    nombre = dataRow["nombre"].ToString(),
+                    documento = dataRow["documento"].ToString(),
+                    placa = dataRow["placa"].ToString()
+                };
+            }
+
+            objFiltro = objTC;
+            return bRsl;
         }
     }
 }

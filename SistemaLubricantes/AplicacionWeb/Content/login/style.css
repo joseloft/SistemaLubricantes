@@ -1,0 +1,488 @@
+/*--A Design by W3layouts 
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+--*/
+/*--- reset code ---*/
+
+
+ol, ul {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+	blockquote:before, blockquote:after, q:before, q:after {
+		content: '';
+		content: none;
+	}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* start editing from here */
+a {
+	text-decoration: none;
+}
+
+.txt-rt {
+	text-align: right;
+}
+/* text align right */
+.txt-lt {
+	text-align: left;
+}
+/* text align left */
+.txt-center {
+	text-align: center;
+	/*-- W3Layouts --*/
+}
+/* text align center */
+.float-rt {
+	float: right;
+}
+/* float right */
+.float-lt {
+	float: left;
+}
+/* float left */
+.clear {
+	clear: both;
+}
+/* clear float */
+.pos-relative {
+	position: relative;
+}
+/* Position Relative */
+.pos-absolute {
+	position: absolute;
+}
+/* Position Absolute */
+.vertical-base {
+	vertical-align: baseline;
+}
+/* vertical align baseline */
+.vertical-top {
+	vertical-align: top;
+}
+/* vertical align top */
+nav.vertical ul li {
+	display: block;
+}
+/* vertical menu */
+nav.horizontal ul li {
+	display: inline-block;
+}
+/* horizontal menu */
+img {
+	max-width: 100%;
+}
+
+/*--- end reset code ---*/
+
+body {
+	background-color: CadetBlue;
+	/*background: url(../../images/bgg9.jpg);*/
+	/*background: url("C:/Users/MPEREZ/source/repos/Migracion/Agrocom/Agrocom/images/banner.jpg); background-repeat: no-repeat;*/
+	/*background-position: center;
+	background-attachment: fixed;
+	background-size: 100% 100%;
+	-webkit-background-size: 100% 100%;
+	-moz-background-size: 100% 100%;
+	-o-background-size: 100% 100%;
+	-ms-background-size: 100% 100%;
+	font-family: 'Muli', sans-serif;*/
+}
+/** fonts used for the icons **/
+@font-face {
+	font-family: 'FontomasCustomRegular';
+	src: url('../fonts/fontomas-webfont.eot');
+	src: url('../fonts/fontomas-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/fontomas-webfont.woff') format('woff'), url('../fonts/fontomas-webfont.ttf') format('truetype'), url('../fonts/fontomas-webfont.svg#FontomasCustomRegular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+h1.w3ls {
+	font-size: 45px;
+	font-weight: 600;
+	padding: 50px 0;
+	color: #fff;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+a.hiddenanchor {
+	display: none;
+}
+/** The wrapper that will contain our two forms **/
+#wrapper {
+	width: 60%;
+	right: 0px;
+	min-height: 560px;
+	margin: 0 auto;
+	width: 35%;
+	position: relative;
+}
+	/**** Styling the form elements **/
+
+	/**** general text styling ****/
+	#wrapper a {
+		color: rgb(95, 155, 198);
+		text-decoration: underline;
+	}
+
+	#wrapper h2 {
+		font-size: 40px;
+		color: #fff;
+		padding-top: 5px;
+		font-weight: 100;
+		text-transform: capitalize;
+		text-align: center;
+		padding-bottom: 30px;
+	}
+
+		#wrapper h2:after {
+			content: ' ';
+			display: block;
+			width: 100%;
+			height: 2px;
+			margin-top: 25px;
+			background: -moz-linear-gradient(left, rgba(147,184,189,0) 0%,rgba(255, 255, 255, 0.8) 20%,rgb(255, 255, 255) 53%,rgba(255, 255, 255, 0.8) 79%,rgba(147,184,189,0) 100%);
+			background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(147,184,189,0)), color-stop(20%,rgba(255, 255, 255, 0.8)), color-stop(53%,rgb(255, 255, 255)), color-stop(79%,rgba(255, 255, 255, 0.8)), color-stop(100%,rgba(147,184,189,0)));
+			background: -webkit-linear-gradient(left, rgba(147,184,189,0) 0%,rgba(255, 255, 255, 0.8) 20%,rgb(255, 255, 255) 53%,rgba(255, 255, 255, 0.8) 79%,rgba(147,184,189,0) 100%);
+			background: -o-linear-gradient(left, rgba(147,184,189,0) 0%,rgba(255, 255, 255, 0.8) 20%,rgb(255, 255, 255) 53%,rgba(255, 255, 255, 0.8) 79%,rgba(147,184,189,0) 100%);
+			background: -ms-linear-gradient(left, rgba(147,184,189,0) 0%,rgba(255, 255, 255, 0.8) 20%,rgb(255, 255, 255) 53%,rgba(255, 255, 255, 0.8) 79%,rgba(147,184,189,0) 100%);
+			background: linear-gradient(left, rgba(147,184,189,0) 0%,rgba(255, 255, 255, 0.8) 20%,rgb(255, 255, 255) 53%,rgba(255, 255, 255, 0.8) 79%,rgba(147,184,189,0) 100%);
+		}
+
+	#wrapper p {
+		margin-bottom: 15px;
+	}
+
+		#wrapper p:first-child {
+			margin: 0px;
+		}
+
+	#wrapper label {
+		color: #fff;
+		position: relative;
+	}
+
+/**** advanced input styling ****/
+/* placeholder */
+::-webkit-input-placeholder {
+	color: #fff;
+}
+
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+	color: #fff;
+}
+
+input {
+	outline: none;
+}
+
+label.uname span, label.youpasswd span, label.youmail span {
+	font-size: 16px;
+	font-weight: normal;
+	text-transform: uppercase;
+}
+
+/** the magic icon trick ! **/
+[data-icon]:after {
+	content: attr(data-icon);
+	font-family: 'FontomasCustomRegular';
+	color: rgb(77, 218, 76);
+	position: absolute;
+	left: 10px;
+	top: 42px;
+	width: 30px;
+}
+
+/*styling both submit buttons */
+
+/** Styling both forms **/
+#register,
+#login {
+	background: rgba(52, 53, 49, 0.58);
+}
+
+#register {
+	z-index: 21;
+	opacity: 0;
+}
+
+#login {
+	z-index: 22;
+}
+
+#toregister:target ~ #wrapper #register,
+#tologin:target ~ #wrapper #login {
+	z-index: 22;
+}
+
+#toregister:target ~ #wrapper #login,
+#tologin:target ~ #wrapper #register {
+	-webkit-animation-timing-function: ease-out;
+	-moz-animation-timing-function: ease-out;
+	-o-animation-timing-function: ease-out;
+	-ms-animation-timing-function: ease-out;
+	animation-timing-function: ease-out;
+	-webkit-animation-name: scaleOut;
+	-moz-animation-name: scaleOut;
+	-ms-animation-name: scaleOut;
+	-o-animation-name: scaleOut;
+	animation-name: scaleOut;
+}
+
+/** the actual animation, credit where due : http://daneden.me/animate/ ***/
+.animate {
+	-webkit-animation-duration: 0.5s;
+	-webkit-animation-fill-mode: both;
+	-moz-animation-duration: 0.5s;
+	-moz-animation-fill-mode: both;
+	-o-animation-duration: 0.5s;
+	-o-animation-fill-mode: both;
+	-ms-animation-duration: 0.5s;
+	-ms-animation-fill-mode: both;
+	animation-duration: 0.5s;
+	animation-fill-mode: both;
+}
+
+/** yerk some ugly IE fixes 'cause I know someone will ask "why does it look ugly in IE?", no matter how many warnings I will put in the article */
+
+
+
+.lt8 #wrapper h2 {
+	color: #066A75;
+}
+
+.lt8 #wrapper1 h2 {
+	color: #066A75;
+}
+
+.lt8 #register {
+	display: none;
+}
+
+.lt8 p.change_link,
+.ie9 p.change_link {
+	position: absolute;
+	height: 90px;
+	background: transparent;
+}
+
+p.agileits {
+	text-align: center;
+	padding: 100px 0 20px;
+	color: #fff;
+	font-size: 16px;
+	font-weight: normal;
+}
+
+	p.agileits a {
+		color: #fff;
+	}
+
+		p.agileits a:hover {
+			color: red;
+		}
+
+@media (max-width:1440px) {
+	#wrapper {
+		width: 40%;
+	}
+}
+
+@media (max-width: 1280px) {
+	#wrapper {
+		width: 45%;
+	}
+}
+
+@media (max-width: 1080px) {
+	h1.w3ls {
+		font-size: 40px;
+		padding: 40px 0;
+	}
+
+	#wrapper h2 {
+		font-size: 30px;
+	}
+
+	#wrapper1 h2 {
+		font-size: 30px;
+	}
+
+	#wrapper {
+		width: 50%;
+	}
+
+	label.uname span, label.youpasswd span, label.youmail span {
+		font-size: 14px;
+	}
+
+
+	.keeplogin input[type="checkbox"] + label {
+		font-size: 14px;
+	}
+
+		.keeplogin input[type="checkbox"] + label span:first-child {
+			width: 13px;
+			height: 13px;
+			top: 0px;
+		}
+}
+
+@media (max-width: 1024px) {
+	h1.w3ls {
+		font-size: 35px;
+		padding: 35px 0;
+	}
+
+	#wrapper h2 {
+		padding-top: 0;
+	}
+
+		#wrapper h2:after {
+			margin-top: 20px;
+		}
+}
+
+@media (max-width:991px) {
+	h1.w3ls {
+		font-size: 30px;
+	}
+
+	#wrapper h2 {
+		font-size: 26px;
+	}
+
+
+	p.agileits {
+		font-size: 14px;
+	}
+}
+
+@media (max-width: 800px) {
+	#wrapper {
+		width: 55%;
+	}
+}
+
+
+
+
+@media (max-width:640px) {
+	#wrapper {
+		width: 60%;
+	}
+
+		#wrapper h2 {
+			padding-bottom: 20px;
+		}
+
+
+
+	p.agileits {
+		padding: 90px 0 20px;
+		line-height: 30px;
+	}
+}
+
+@media (max-width: 600px) {
+	h1.w3ls {
+		font-size: 26px;
+	}
+
+	#wrapper h2 {
+		font-size: 22px;
+	}
+
+	#wrapper {
+		width: 65%;
+	}
+}
+
+@media (max-width: 480px) {
+	#wrapper {
+		width: 70%;
+	}
+
+	h1.w3ls {
+		font-size: 24px;
+		padding: 30px 0;
+	}
+
+
+
+	#wrapper p {
+		margin-bottom: 10px;
+	}
+}
+
+@media (max-width: 414px) {
+	#wrapper {
+		width: 80%;
+	}
+
+
+	label.uname span, label.youpasswd span, label.youmail span {
+		font-size: 13px;
+	}
+}
+
+@media (max-width: 384px) {
+
+
+	h1.w3ls {
+		font-size: 22px;
+		padding: 27px 0;
+	}
+}
+
+@media (max-width: 375px) {
+	h1.w3ls {
+		font-size: 20px;
+		padding: 27px 0;
+	}
+
+	p.agileits {
+		padding: 40px 0px 20px;
+	}
+}
+
+@media (max-width: 320px) {
+	h1.w3ls {
+		font-size: 19px;
+		padding: 25px 0;
+	}
+
+	#wrapper h2 {
+		font-size: 20px;
+		margin-top: -5px;
+		padding-bottom: 15px;
+	}
+
+		#wrapper h2:after {
+			margin-top: 12px;
+		}
+
+	#wrapper {
+		width: 90%;
+	}
+
+
+
+	p.agileits {
+		padding: 20px 0px;
+	}
+}
