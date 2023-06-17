@@ -3,7 +3,23 @@ namespace Entidades.Clientes
 {
     public class EntidadCliente
     {
-        public int id { get; set; }
+        public void ReplaceNull()
+        {
+            id = id ?? 0;
+            razon_social = razon_social ?? "";
+            distrito = distrito ?? "";
+            cod_cliente = cod_cliente ?? "";
+            telefono = telefono ?? "";            
+            apellidos = apellidos ?? "";
+            direccion = direccion ?? "";
+            celular = celular ?? "";
+            tipo = tipo ?? "";
+            dni = dni ?? "";
+            ruc = ruc ?? "";
+            retenedor = retenedor ?? "";
+
+        }
+        public int? id { get; set; }
         public string cod_cliente { get; set; }
         public string razon_social { get; set; }
         public string distrito { get; set; }

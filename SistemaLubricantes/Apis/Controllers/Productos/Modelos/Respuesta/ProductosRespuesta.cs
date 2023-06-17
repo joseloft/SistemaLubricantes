@@ -20,7 +20,7 @@ namespace Apis.Controllers.Productos.Modelos.Respuesta
         public string marca { get; set; }
 
         [JsonProperty("stock")]
-        public float stock { get; set; }
+        public int stock { get; set; }
 
         [JsonProperty("precio_venta")]
         public decimal precio_venta { get; set; }
