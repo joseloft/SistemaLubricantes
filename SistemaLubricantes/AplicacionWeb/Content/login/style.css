@@ -259,8 +259,6 @@ label.uname span, label.youpasswd span, label.youmail span {
 
 /** yerk some ugly IE fixes 'cause I know someone will ask "why does it look ugly in IE?", no matter how many warnings I will put in the article */
 
-
-
 .lt8 #wrapper h2 {
 	color: #066A75;
 }
@@ -377,9 +375,6 @@ p.agileits {
 		width: 55%;
 	}
 }
-
-
-
 
 @media (max-width:640px) {
 	#wrapper {

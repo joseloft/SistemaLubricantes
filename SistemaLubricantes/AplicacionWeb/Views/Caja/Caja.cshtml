@@ -1,0 +1,197 @@
+﻿
+@{
+    ViewBag.Title = "Caja";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .contenedor {
+        width: 100%;
+        max-width: 1400px;
+        margin: auto;
+        padding: 0px;
+        background-color: Snow;
+        overflow: hidden;
+        box-sizing: border-box;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .titulo {
+        flex-grow: 1;
+        width: 100%;
+    }
+
+    .ventas {
+        flex-grow: 1;
+        width: 100%;
+    }
+
+    .detalle {
+        flex-grow: 3;
+        width: 100%;
+    }
+
+    .listaVentas {
+        flex-grow: 1;
+        width: 100%;
+    }
+
+    @@media screen and (max-width: 1279px) and (min-width:821px) {
+    }
+
+    @@media screen and (max-width: 820px) and (min-width:0px) {
+        
+    }
+
+</style>
+
+<div class="contenedor">
+    <div class="d-sm-flex align-items-center justify-content-between mb-2 titulo">
+        <h2><span class="badge badge-titulo text-black"><i class="fas fa-piggy-bank"></i>&nbsp&nbspCaja</span></h2>
+    </div>
+
+    <div class="ventas">
+        <div class="card border-secondary mb-3">
+            <div class="card-header" style="background-color:darkslategrey;color:white"><i class="fas fa-file-signature"></i> Ventas sin emitir</div>
+            <div class="card-body">
+                <div class="form-group row" style="margin-bottom: 5px">
+                    <div class="col-2">
+                        <label for="selectNroVenta">Numero de Venta</label>
+                    </div>
+                    <div class="col-2">
+                        <select id="selectNroVenta" class="selectpicker form-control form-control-sm" data-live-search="true">
+                        </select>
+                    </div>
+                    <div class="col-1">
+                        <label for="txtCliente">Cliente</label>
+                    </div>
+                    <div class="col-4">
+                        <input type="text" class="form-control form-control-sm" id="txtCliente" readonly>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-bottom:4px">
+                    <div class="col-2" hidden>
+                        <input type="text" class="form-control form-control-sm" id="txtTipoDocumento">
+                    </div>
+                    <div class="col-2">
+                        <label for="txtDocumento">Nro Documento</label>
+                    </div>
+                    <div class="col-2">
+                        <input type="text" class="form-control form-control-sm" id="txtDocumento" readonly>
+                    </div>
+                    <div class="col-2">
+                        <label for="selectComprobante">Tipo Comprobante</label>
+                    </div>
+                    <div class="col-2">
+                        <select id="selectComprobante" class="form-control form-control-sm" data-live-search="true">
+                        </select>
+                    </div>
+                    <div class="col-1">
+                        <label for="txtTotal">TOTAL:</label>
+                    </div>
+                    <div class="col-2">
+                        <input style="background-color:mediumseagreen;font-size:18px;font-weight:700" class="form-control form-control-sm" id="txtTotal" readonly>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-2">
+                        <label for="selectPago">Forma de pago</label>
+                    </div>
+                    <div class="col-2">
+                        <select id="selectPago" class="form-control form-control-sm" data-live-search="true">
+                        </select>
+                    </div>
+                    <div class="col-2" id="lblcredito">
+                        <label for="txtCredito">Dias de Credito:</label>
+                    </div>
+                    <div class="col-1" id="diasCredito">
+                        <input type="number" class="form-control form-control-sm" id="txtCredito">
+                    </div>
+                    <div class="col-3" id="diasNoCredito">
+                    </div>
+                    <div class="col-2">
+                    </div>
+                    <div class="col-3">
+                        <a href="#" class="btn btn-info btn-sm btn-icon-split transact" id="btnEmitir" onclick="javascipt:return false;">
+                            <span class="icon text-black">
+                                <i class="fas fa-print fa-sm"></i>
+                            </span>
+                            <span class="text"><b>EMITIR COMPROBANTE</b></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="detalle">
+        <div class="card border-secondary mb-3">
+            <div class="card-header" style="background-color:darkslategrey;color:white"><i class="fas fa-pager"></i> Detalle de venta</div>
+            <div class="card-body">
+                <div class="table-responsive" id="detalleVenta">
+                    <table id='tblDetalle' class='table table-cebra table-hover table-bordered' width="100%">
+                        <thead style="background-color: #13213d; color: white; font-size: 12px; text-align: center">
+                            <tr>
+                                <td style="min-width: 20px;">ITEM</td>
+                                <td style="min-width: 200px;">PRODUCTO</td>
+                                <td style="min-width: 50px;">MARCA</td>
+                                <td style="min-width: 30px;">CANTIDAD</td>
+                                <td style="min-width: 25px;">PRECIO</td>
+                                <td style="min-width: 25px;">TOTAL</td>
+                            </tr>
+                        </thead>
+                        <tbody style="font-size: 11px; text-align: center">
+                        </tbody>
+                        <tfoot style="font-size: 8px">
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="listaVentas">
+        <div class="card shadow mb-4">
+            <div class="card-header pt-1 card-header-title-filter">
+                <div class="form-group row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                            <strong>LISTA DE VENTAS SIN EMITIR</strong>
+                            <i class="fas fa-angle-down arrow"></i>
+                        </button>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                    </div>
+                </div>
+            </div>
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    <div class="table-responsive" id="listaVentas">
+                        <table id='tblLista' class='table table-cebra table-hover table-bordered' width="100%">
+                            <thead style="background-color: #13213d; color: white; font-size: 12px; text-align: center">
+                                <tr>
+                                    <td style="min-width: 25px;">N° Venta</td>
+                                    <td style="min-width: 25px;">RUC/DNI</td>
+                                    <td style="min-width: 200px;">Cliente</td>
+                                    <td style="min-width: 40px;">Fecha Emision</td>
+                                    <td style="min-width: 70px;">Forma de Pago</td>
+                                    <td style="min-width: 25px;">Moneda</td>
+                                    <td style="min-width: 20px;">Total</td>
+                                    <td style="min-width: 25px;">Condicion</td>
+                                    <td style="min-width: 10px;">Accion</td>
+                                </tr>
+                            </thead>
+                            <tbody style="font-size: 11px; text-align: center">
+                            </tbody>
+                            <tfoot style="font-size: 8px">
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/View/Caja/Caja.js"></script>
