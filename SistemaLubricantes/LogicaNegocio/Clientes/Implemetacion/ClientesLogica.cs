@@ -44,7 +44,8 @@ namespace LogicaNegocio.Clientes.Implemetacion
                     direccion = row["direccion"].ToString(),
                     distrito = row["distrito"].ToString(),
                     celular = row["celular"].ToString(),
-                    correo = row["correo"].ToString(),                    
+                    correo = row["correo"].ToString(),
+                    dni = row["dni"].ToString(),
                     ruc = row["ruc"].ToString()
                 };
                 lstClientes.Add(objCli);

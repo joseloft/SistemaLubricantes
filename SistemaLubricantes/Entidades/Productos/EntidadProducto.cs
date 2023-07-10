@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.VisualBasic;
+using System.Reflection;
 
 namespace Entidades.Productos
 {
@@ -8,8 +9,12 @@ namespace Entidades.Productos
         public void ReplaceNull()
         {
             marca = marca ?? "";
+            modelo = modelo ?? "";
             medida = medida ?? "";
             moneda = moneda ?? "";
+            porcentaje_venta = porcentaje_venta ?? 0;
+            codigo_UM = codigo_UM ?? "";
+            codigo_UMC = codigo_UMC ?? "";
             litroXBalde = litroXBalde ?? 0;
         }
         public string cod_categoria { get; set; }
@@ -20,10 +25,11 @@ namespace Entidades.Productos
         public string medida { get; set; }
         public int stock { get; set; }
         public decimal precio_compra { get; set; }
-        public float porcentaje_venta { get; set; }
+        public float? porcentaje_venta { get; set; }
         public decimal precio_venta { get; set; }
         public string moneda { get; set; }        
         public string codigo_UM { get; set; }
+        public string codigo_UMC { get; set; }
         public string codigo_tipo { get; set; }
         public string codigo_marca { get; set; }
         public string tipo_moneda { get;set; }

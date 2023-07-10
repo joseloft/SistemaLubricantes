@@ -25,7 +25,7 @@
     .cliente {
         background-color: transparent;
         width: 30%;
-        padding-right:5px;
+        padding-right: 5px;
     }
 
     .producto {
@@ -47,6 +47,10 @@
 
     .modal-lg {
         max-width: 45% !important;
+    }
+
+    .input-group input::placeholder {
+        color: blueviolet;
     }
 
     @@media screen and (max-width: 1279px) and (min-width:821px) {
@@ -71,6 +75,10 @@
             width: 100% !important;
             order: 3;
         }
+
+        .modal-lg {
+            width: 100% !important;
+        }
     }
 
     @@media screen and (max-width: 820px) and (min-width:0px) {
@@ -94,7 +102,12 @@
             width: 100% !important;
             order:3;
         }
+
+        .modal-lg {
+            width: 100% !important;
+        }
     }
+
 </style>
 
 <div class="contenedor">
@@ -109,28 +122,28 @@
                 <div class="form-group row">
                     <div class="col-6">
                         <label for="iptDocumento">Documento / RUC</label>
-                        <div class="form-icon-wrapper">
-                            <input type="text" class="form-control form-control-sm" id="iptDocumento" placeholder="Ingrese DNI/RUC" autofocus>
+                        <div class="">
+                            <input type="text" class="form-control form-control-sm" id="iptDocumento" placeholder="Ingrese DNI/RUC" autofocus maxlength="11">
                         </div>
                     </div>
-                    <div class="col-3">
-                        <a href="#" class="btn btn-success btn-sm btn-icon-split transact" id="btnBuscar" onclick="javascipt:return false;">
-                            <span class="icon text-white-50">
-                                <i class="fas fa-search fa-sm"></i>
-                            </span>
-                            <span class="text">Buscar</span>
-                        </a>
-                    </div>
-                    <div class="col-3">
-                        <a href="#" class="btn btn-primary btn-sm btn-icon-split transact" id="btnAgregar" data-toggle="modal">
-                            <span class="icon text-white-50">
-                                <i class="fas fa-plus-circle fa-sm"></i>
-                            </span>
-                            <span class="text">Agregar</span>
-                        </a>
+                    <div class="col-6">
+                        <div class="form-group row">
+                            <a href="#" class="btn btn-success btn-sm btn-icon-split transact" id="btnBuscar" onclick="javascipt:return false;">
+                                <span class="icon text-white">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </span>
+                                <span class="text">Buscar</span>
+                            </a>
+                            <a href="#" class="btn btn-primary btn-sm btn-icon-split transact" id="btnAgregar" data-toggle="modal">
+                                <span class="icon text-white">
+                                    <i class="fas fa-plus-circle fa-sm"></i>
+                                </span>
+                                <span class="text">Agregar</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group row" style="margin-top:-15px">
                     <div class="col-12">
                         <label for="selectCliente">Cliente</label>
                         <div class="">
@@ -143,7 +156,7 @@
                     <div class="col-6">
                         <label for="iptPlaca">Placa</label>
                         <div class="form-icon-wrapper">
-                            <input type="text" class="form-control form-control-sm" id="iptPlaca" placeholder="Ingrese nro placa">
+                            <input type="text" class="form-control form-control-sm" id="iptPlaca" placeholder="Ingrese nro placa" maxlength="7">
                         </div>
                     </div>
                     <div class="col-6">
@@ -164,41 +177,28 @@
 
     <div class="producto">
         <div class="card border-secondary">
-            <div class="card-header" style="background-color: darkslategrey; color: white "><i class="fas fa-gifts"></i> Productos</div>
-            <div class="form-group row" hidden>
-                <div class="col-9">
-                    <input type="text" class="form-control form-control-sm" id="description" style="background-color: SteelBlue; color: white"
-                           placeholder="Escriba el nombre del producto">
-                </div>
-                <div class="col-3">
-                    <a href="#" class="btn btn-link btn-sm" style="color:coral" id="btnAgregarProducto" onclick="javascipt:return false;">
-                        <span class="icon text-warning">
-                            <i class="fas fa-shopping-bag"></i>
-                        </span>
-                        <span class="text" style="color:coral">Agregar Producto</span>
-                    </a>
-                </div>
-            </div>
-            <div class="form-check-inline" style="background-color: DodgerBlue; padding-left: 1em !important">
-                <label><input class="form-check-input" type="checkbox" value="C00004" id="chkAceite">Aceite</label>
-                <label><input class="form-check-input" type="checkbox" value="C00005" id="chkMuelle">Muelles</label>
-                <label><input class="form-check-input" type="checkbox" value="C00003" id="chkFiltro">Filtros</label>
-                <label><input class="form-check-input" type="checkbox" value="C00002" id="chkFaja">Fajas</label>
-                <label><input class="form-check-input" type="checkbox" value="C00006" id="chkAmortiguador">Amortiguadores</label>
-                <label><input class="form-check-input" type="checkbox" value="C00007" id="chkBateria">Baterias</label>
-                <label><input class="form-check-input" type="checkbox" value="C00008" id="chkRodaje">Rodajes</label>
-                <label><input class="form-check-input" type="checkbox" value="C00014" id="chkGeneral">Servicios Generales</label>
-                <label><input class="form-check-input" type="checkbox" value="C00010" id="chkManguera">Mangueras</label>
-                <label><input class="form-check-input" type="checkbox" value="C00009" id="chkFoco">Focos</label>
-                <label><input class="form-check-input" type="checkbox" value="C00011" id="chkPerno">Perno</label>
-                <label><input class="form-check-input" type="checkbox" value="C00012" id="chkCruceta">Crucetas</label>
-                <label><input class="form-check-input" type="checkbox" value="C00016" id="chkRefrigerante">Refrigerante</label>
-                <label><input class="form-check-input" type="checkbox" value="C00017" id="chkLiquidoFreno">Liquido de freno</label>
-                <label><input class="form-check-input" type="checkbox" value="C00013" id="chkSoporte">Soporte</label>
-                <label><input class="form-check-input" type="checkbox" value="C00015" id="chkAgua">Agua</label>
-                <label><input class="form-check-input" type="checkbox" value="C00018" id="chkJebe">Jebes</label>
-                <label><input class="form-check-input" type="checkbox" value="C00001" id="chkOtro">Otros</label>
-                <a href="#" class="btn btn-link btn-sm" style="color:saddlebrown" id="btnProducto" data-toggle="modal">
+            <div class="card-header" style="background-color: darkslategrey; color: white"><i class="fas fa-gifts"></i> Productos</div>
+            
+            <div class="form-check-inline" style="background-color: DodgerBlue;" width="100%">
+                <label style="margin-bottom:-5px"><input class="form-check-input" type="checkbox" value="C00004" id="chkAceite">Aceite</label>
+                <label style="margin-bottom:-5px"><input class="form-check-input" type="checkbox" value="C00005" id="chkMuelle">Muelles</label>
+                <label style="margin-bottom:-5px"><input class="form-check-input" type="checkbox" value="C00003" id="chkFiltro">Filtros</label>
+                <label style="margin-bottom:-5px"><input class="form-check-input" type="checkbox" value="C00002" id="chkFaja">Fajas</label>
+                <label style="margin-bottom:-5px"><input class="form-check-input" type="checkbox" value="C00006" id="chkAmortiguador">Amortiguadores</label>
+                <label style="margin-bottom:-5px"><input class="form-check-input" type="checkbox" value="C00007" id="chkBateria">Baterias</label>
+                <label style="margin-bottom:-5px"><input class="form-check-input" type="checkbox" value="C00008" id="chkRodaje">Rodajes</label>
+                <label style="margin-bottom:-5px"><input class="form-check-input" type="checkbox" value="C00014" id="chkGeneral">Servicios Generales</label>
+                <label style="margin-bottom:-5px"><input class="form-check-input" type="checkbox" value="C00010" id="chkManguera">Mangueras</label>
+                <label style="margin-bottom:-5px"><input class="form-check-input" type="checkbox" value="C00009" id="chkFoco">Focos</label>
+                <label style="margin-bottom:-5px"><input class="form-check-input" type="checkbox" value="C00011" id="chkPerno">Perno</label>
+                <label style="margin-bottom:-5px"><input class="form-check-input" type="checkbox" value="C00012" id="chkCruceta">Crucetas</label>
+                <label style="margin-bottom:-5px"><input class="form-check-input" type="checkbox" value="C00016" id="chkRefrigerante">Refrigerante</label>
+                <label style="margin-bottom:-5px"><input class="form-check-input" type="checkbox" value="C00017" id="chkLiquidoFreno">Liquido de freno</label>
+                <label style="margin-bottom:-5px"><input class="form-check-input" type="checkbox" value="C00013" id="chkSoporte">Soporte</label>
+                <label style="margin-bottom:-5px"><input class="form-check-input" type="checkbox" value="C00015" id="chkAgua">Agua</label>
+                <label style="margin-bottom:-5px"><input class="form-check-input" type="checkbox" value="C00018" id="chkJebe">Jebes</label>
+                <label style="margin-bottom:-5px"><input class="form-check-input" type="checkbox" value="C00001" id="chkOtro">Otros</label>
+                <a href="#" class="btn btn-link btn-sm" style="color: sandybrown; margin-bottom: 5px" id="btnProducto" data-toggle="modal">
                     <span class="icon text-warning">
                         <i class="fas fa-shopping-bag"></i>
                     </span>
@@ -207,19 +207,19 @@
             </div>
             <div class="table-responsive" id="producto">
                 <table id='tblProducto' class='table table-cebra table-hover table-bordered' width="100%">
-                    <thead style="background-color: #13213d; color: white; font-size: 11px;">
-                        <tr style="font-size: 11px;">
-                            <td style='min-width: 5px; text-align: center'>°</td>
-                            <td style='min-width: 10px;' hidden>CATEGORIA</td>
-                            <td style='min-width: 15px; text-align: center'>CODIGO</td>
-                            <td style='min-width: 220px; text-align: center'>DESCRIPCION</td>
-                            <td style='min-width: 60px; text-align: center'>MARCA</td>
-                            <td style='min-width: 15px; text-align: center'>STOCK</td>
-                            <td style='min-width: 15px; text-align: center'>PRECIO</td>
-                            <td style='min-width: 15px; text-align: center'>MONEDA</td>
+                    <thead style="background-color: #13213d; color: white; font-size: 11px; text-align: center">
+                        <tr>
+                            <td>°</td>
+                            <td hidden>CATEGORIA</td>
+                            <td>CODIGO</td>
+                            <td>DESCRIPCION</td>
+                            <td>MARCA</td>
+                            <td>STOCK</td>
+                            <td>PRECIO</td>
+                            <td>MONEDA</td>
                         </tr>
                     </thead>
-                    <tbody style="font-size: 11px">
+                    <tbody style="font-size: 11px; text-align: center">
                     </tbody>
                     <tfoot style="font-size: 7px">
                     </tfoot>
@@ -252,7 +252,7 @@
                         </div>
                     </div>
                     @*<label for="monto">Monto de Credito</label>
-                        <input type="number" class="form-control form-control-sm" id="monto" value="0.00" style="text-align:right">*@
+                    <input type="number" class="form-control form-control-sm" id="monto" value="0.00" style="text-align:right">*@
                 </div>
                 <div class="form-group row" hidden>
                     <div class="col-6">
@@ -271,34 +271,34 @@
                     <div class="col-1">
                     </div>
                     <div class="col-5">
-                        <label for="subTotal">Sub Total</label>
+                        <label for="iptSubTotal">Sub Total</label>
                     </div>
                     <div class="col-5">
-                        <input type="number" class="form-control form-control-sm" id="subTotal" value="0.00" readonly style="text-align:right" />
+                        <input type="number" class="form-control form-control-sm" id="iptSubTotal" value="0.00" readonly style="text-align:right" />
                     </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group row" style="margin-top:-10px">
                     <div class="col-1">
                     </div>
                     <div class="col-5">
-                        <label for="igv">IGV</label>
+                        <label for="iptIGV">IGV</label>
                     </div>
                     <div class="col-5">
-                        <input type="number" class="form-control form-control-sm" id="igv" value="0.00" readonly style="text-align:right" />
+                        <input type="number" class="form-control form-control-sm" id="iptIGV" value="0.00" readonly style="text-align:right" />
                     </div>
                 </div>
-                <div class="form-group row rounded" style="background-color:#9ACD32">
+                <div class="form-group row rounded" style="background-color: #9ACD32; margin-top: -5px">
                     <div class="col-1">
                     </div>
                     <div class="col-5">
-                        <label for="total">Total a Pagar</label>
+                        <label for="iptTotal"><b>Total a Pagar</b></label>
                     </div>
                     <div class="col-5">
-                        <input type="number" class="form-control form-control-sm" id="total" value="0.00" readonly style="text-align: right;background-color:#8FBC8B" />
+                        <input type="number" class="form-control form-control-sm" id="iptTotal" value="0.00" readonly style="text-align: right; background-color: #8FBC8B; font-weight: 700" />
                     </div>
                 </div>
                 <br />
-                <div class="form-group row">
+                <div class="form-group row" style="margin-top:-15px">
                     <div class="col-6">
                         <a href="#" class="btn btn-danger btn-sm btn-icon-split transact" id="btnCancelar" onclick="javascipt:return false;">
                             <span class="icon text-white-50">
@@ -327,7 +327,7 @@
                 <table id='tblDetalle' class='table table-cebra table-hover table-bordered' width="100%">
                     <thead style="background-color: #13213d !important; color: white; font-size: 10px;">
                         <tr style="font-size: 11px;">
-                            <td style='max-width:30px; min-width:30px;text-align:center'>ITEM</td>
+                            <td style='max-width:35px; min-width:35px;text-align:center'>ITEM</td>
                             <td style='max-width:50px; min-width:50px;text-align:center'>CODIGO</td>
                             <td style='max-width: 250px; min-width: 250px; text-align: center'>PRODUCTO</td>
                             <td style='max-width: 60px; min-width: 60px; text-align: center'>CANTIDAD</td>
@@ -364,48 +364,141 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="row g-2">
+                <div class="row g-2 mdCliente" style="background-color: #CDDCCC; border: 3px solid #eee;border-radius:5px">
                     <div class="col-sm-12">
-                        <label for="txtnombres" class="form-label">Nombres o Razon Social</label>
-                        <input type="text" class="form-control form-control-sm" id="txtnombres">
+                        <div class="form-group">
+                            <label for="txtnombres" class="form-label">Nombres o Razon Social</label>
+                            <div class="input-group">
+                                <div class="">
+                                    <span class="input-group-text bg-white"><i class="fa fa-lock" style="color: red"></i></span>
+                                </div>
+                                <input type="text" id="txtnombres" class="form-control form-control-sm" placeholder="Ingrese el nombre o razon social">
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6" style="margin-top: -7px">
                         <label for="txtapellidos" class="form-label">Apellidos</label>
-                        <input type="text" class="form-control form-control-sm" id="txtapellidos">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" id="txtapellidos" class="form-control form-control-sm" placeholder="Ingrese los apellidos">
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6" style="margin-top: -7px">
                         <label for="txtcelular" class="form-label">Celular</label>
-                        <input type="text" class="form-control form-control-sm" id="txtcelular">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" id="txtcelular" class="form-control form-control-sm" placeholder="Ingrese el numero">
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-sm-6">
-                        <label for="txtdistrito" class="form-label">Distrito</label>
-                        <input type="text" class="form-control form-control-sm" id="txtdistrito">
+                    <div class="col-sm-6" style="margin-top: -7px">
+                        <div class="form-group">
+                            <label for="txtdistrito" class="form-label">Distrito</label>
+                            <div class="input-group">
+                                <div class="">
+                                    <span class="input-group-text bg-white"><i class="fa fa-lock" style="color: red"></i></span>
+                                </div>
+                                <input type="text" id="txtdistrito" class="form-control form-control-sm" placeholder="Ingrese el distrito">
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6" style="margin-top: -7px">
                         <label for="txttelefono" class="form-label">Telefono</label>
-                        <input type="text" class="form-control form-control-sm" id="txttelefono">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" id="txttelefono" class="form-control form-control-sm" placeholder="Ingrese el telefono">
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-sm-12">
-                        <label for="txtdireccion" class="form-label">Direccion</label>
-                        <input type="text" class="form-control form-control-sm" id="txtdireccion">
+                    <div class="col-sm-12" style="margin-top: -7px">
+                        <div class="form-group">
+                            <label for="txtdireccion" class="form-label">Direccion</label>
+                            <div class="input-group">
+                                <div class="">
+                                    <span class="input-group-text bg-white"><i class="fa fa-lock" style="color: red"></i></span>
+                                </div>
+                                <input type="text" id="txtdireccion" class="form-control form-control-sm" placeholder="Ingrese la direccion">
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-sm-12">
-                        <label for="txtcorreo" class="form-label">Correo</label>
-                        <input type="text" class="form-control form-control-sm" id="txtcorreo">
+                    <div class="col-sm-12" style="margin-top: -7px">
+                        <div class="form-group">
+                            <label for="txtcorreo" class="form-label">Correo electronico</label>
+                            <div class="input-group">
+                                <div class="">
+                                    <span class="input-group-text bg-white"><i class="fa fa-lock" style="color: red"></i></span>
+                                </div>
+                                <input type="text" id="txtcorreo" class="form-control form-control-sm" placeholder="Ingrese el correo electronico">
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-sm-6">
-                        <label for="txtdni" class="form-label">DNI</label>
-                        <input type="text" class="form-control form-control-sm" id="txtdni">
+                    <div class="col-sm-6" style="margin-top: -7px">
+                        <div class="form-group">
+                            <label for="txtdni" class="form-label">DNI</label>
+                            <div class="input-group">
+                                <div class="">
+                                    <span class="input-group-text bg-white"><i class="fa fa-lock" style="color: red"></i></span>
+                                </div>
+                                <input type="text" id="txtdni" class="form-control form-control-sm" maxlength="8" placeholder="Ingrese el DNI">
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-sm-6">
-                        <label for="txtruc" class="form-label">RUC</label>
-                        <input type="text" class="form-control form-control-sm" id="txtruc">
+                    <div class="col-sm-6" style="margin-top: -7px">
+                        <div class="form-group">
+                            <label for="txtruc" class="form-label">RUC</label>
+                            <div class="input-group">
+                                <div class="">
+                                    <span class="input-group-text bg-white"><i class="fa fa-lock" style="color: red"></i></span>
+                                </div>
+                                <input type="text" id="txtruc" class="form-control form-control-sm" maxlength="11" placeholder="Ingrese el RUC">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="btnGuardarCliente">Guardar</button>
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+            <div class="modal-footer d-block">
+                <div class="form-group row">
+                    <div class="col-7">
+                        <span style="color:red;float:left;font-size:12px">Campos obligatorios</span>
+                    </div>
+                    <div class="col-3">
+                        <button type="button" class="btn btn-primary" id="btnGuardarCliente">Registrar</button>
+                    </div>
+                    <div class="col-2">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalVentasAnteriores" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: darkslategrey; color: white">
+                <h5 class="modal-title"><i class="fas fa-list-alt"></i> Detalle de ventas anteriores</h5>
+                <button type="button" class="btn-close text-danger" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive" id="detalleLastVenta">
+                    <table id="tblLastVenta" class='table table-cebra table-hover table-bordered' width="100%">
+                        <thead style="background-color: #13213d !important;color: white;font-size: 12px;text-align: center;">
+                            <tr style="font-size: 12px;">
+                                <td style="min-width: 30px">[]</td>
+                                <td style="min-width: 50px;">N° Venta</td>
+                                <td style="min-width: 50px;">Fecha</td>
+                                <td style="min-width: 50px">Total</td>
+                                <td style="min-width: 60px">Estado</td>
+                                <td style="min-width: 50px">Placa</td>
+                                <td style="min-width: 30px">T.C.</td>
+                            </tr>
+                        </thead>
+                        <tbody style="font-size: 11px; text-align: center;">
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -419,35 +512,35 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="col-md-12 col-sm-12 col-xs-12" style="padding:2px;background-color: #CDDCCC; border: 3px solid #eee ">
+                <div class="col-md-12 col-sm-12 col-xs-12" style="padding-top:10px;background-color: #CDDCCC; border: 3px solid #eee;border-radius:5px">
                     <div class="col-md-12 col-sm-12 col-xs-12">
-                        <div class="form-group row" style="padding:10px">
+                        <div class="form-group row" style="justify-content: center;" >
                             <div class="col-md-3">
                                 <div class="form-group row">
                                     <div class="col-md-12">
-                                        <label for="txtCodigoProducto" class="form-label">Codigo:</label>
+                                        <label for="txtCodigoProducto" class="form-label">Codigo:</label>                                        
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                <div class="form-group row" style="margin-top:-15px">
                                     <div class="col-md-12">
                                         <input id="txtCodigoProducto" class="form-control form-control-sm" disabled />
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3" style="padding-top:5px">
-                                <a href="#" class="btn btn-info btn-lg btn-icon-split" style="font-size:14px" id="btnAgregarMarca">
+                            <div class="col-md-3" >
+                                <a href="#" class="btn btn-info btn-lg btn-icon-split" style="font-size:15px" id="btnAgregarMarca" data-toggle="modal">
                                     <span class="icon text-black">
-                                        <i class="fas fa-plus-circle fa-sm"></i>
+                                        <i class="fas fa-plus-circle fa-lg"></i>
                                     </span>
-                                    <span class="text">Agregar Marca</span>
+                                    <span class="text">Agregar<br>Marca</span>
                                 </a>
                             </div>
-                            <div class="col-md-3" style="padding-top:5px">
-                                <a href="#" class="btn btn-info btn-lg btn-icon-split" style="font-size:14px" id="btnAgregarTipo">
+                            <div class="col-md-3" >
+                                <a href="#" class="btn btn-info btn-lg btn-icon-split" style="font-size:15px" id="btnAgregarTipo" data-toggle="modal">
                                     <span class="icon text-black">
-                                        <i class="fas fa-plus-square fa-sm"></i>
+                                        <i class="fas fa-plus-square fa-lg"></i>
                                     </span>
-                                    <span class="text">Agregar Tipo</span>
+                                    <span class="text">Agregar<br>Tipo</span>
                                 </a>
                             </div>
                             <div class="col-md-3">
@@ -456,7 +549,7 @@
                                         <label for="selectMoneda" class="form-label">Moneda:</label>
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                <div class="form-group row" style="margin-top:-15px">
                                     <div class="col-md-12">
                                         <select id="selectMoneda" class="form-control form-control-sm" data-live-search="true">
                                         </select>
@@ -464,41 +557,41 @@
                                 </div>
                             </div>
                         </div>                    
-                        <div style="padding-bottom:5px;background-color: #f6f9fe">
-                            <p style="background-color:lightseagreen"><input class="form-check-input" type="checkbox" value="FN" id="chkFormarNombre"> Formar Nombre</p>
+                        <div style="margin: -20px -15px 0 -15px; padding: 0 5px 5px 5px; background-color: #f6f9fe; border-radius: 5px">
+                            <p style="background-color: lightseagreen; border-radius: 5px; padding-left: 1em"><input class="form-check-input" type="checkbox" value="FN" id="chkFormarNombre"> Formar Nombre</p>
                             <div class="form-group row">
-                                <div class="col-md-4">
+                                <div class="col-md-4" style="margin-top: -10px;">
                                     <label for="selectCategoria" class="form-label">Categoria:</label>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4" style="margin-top: -10px;">
                                     <label for="selectTipo" class="form-label">Tipo:</label>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4" style="margin-top: -10px;">
                                     <label for="iptModelo" class="form-label">Modelo:</label>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <div class="col-md-4">
+                                <div class="col-md-4" style="margin-top:-15px">
                                     <select id="selectCategoria" class="form-control form-control-sm" data-live-search="true">
                                     </select>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4" style="margin-top:-15px">
                                     <select id="selectTipo" class="form-control form-control-sm" data-live-search="true">
                                     </select>
                                 </div>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control form-control-sm" id="iptModelo">
+                                <div class="col-md-4" style="margin-top:-15px">
+                                    <input type="text" class="form-control form-control-sm" id="iptModelo" placeholder="Ingrese el modelo">
                                 </div>
                             </div>
                         </div>                        
-                        <div style="padding-bottom:5px;background-color: #f6f9fe">
-                            <p style="background-color:lightseagreen"><input class="form-check-input" type="checkbox" value="IN" id="chkIngresarNombre"> Ingresar Nombre</p>
+                        <div style="margin: -12px -15px 0 -15px; padding: 0 5px 3px 5px; background-color: #f6f9fe; border-radius: 5px">
+                            <p style="background-color: lightseagreen; border-radius: 5px; padding-left: 1em"><input class="form-check-input" type="checkbox" value="IN" id="chkIngresarNombre"> Ingresar Nombre</p>
                             <div class="form-group row">
                                 <div class="col-md-4">
                                     <label for="iptNombreProducto" class="form-label">Nombre Producto:</label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control form-control-sm" id="iptNombreProducto">
+                                    <input type="text" class="form-control form-control-sm" id="iptNombreProducto" placeholder="Ingrese el nombre del producto">
                                 </div>
                             </div>
                         </div>
@@ -510,18 +603,18 @@
                             </div>
                             <div class="col-md-3">
                                 <label class="form-label" for="iptStock">Stock</label>
-                                <input type="number" class="form-control form-control-sm" id="iptStock">
+                                <input type="number" class="form-control form-control-sm" id="iptStock" value="0">
                             </div>
                             <div class="col-md-3">
                                 <label class="form-label" for="iptPrecioCompra">Prec. Compra</label>
-                                <input type="number" class="form-control form-control-sm" id="iptPrecioCompra">
+                                <input type="number" class="form-control form-control-sm" id="iptPrecioCompra" value="0">
                             </div>
                             <div class="col-md-3">
                                 <label class="form-label" for="iptPrecioVenta">Precio Venta</label>
-                                <input type="number" class="form-control form-control-sm" id="iptPrecioVenta">
+                                <input type="number" class="form-control form-control-sm" id="iptPrecioVenta" value="0">
                             </div>
                         </div>
-                        <p class="form-label" style="background-color: mediumseagreen">Unidad de Medida de Venta</p>
+                        <p class="form-label" style="background-color: mediumseagreen;margin: -15px -15px 0 -15px">  Unidad de Medida de Venta</p>
                         <div class="form-group row">
                             <div class="col-md-3">
                                 <label><input class="form-check-input" type="checkbox" id="chkBalde"> Balde</label>
@@ -544,26 +637,26 @@
                                 </select>
                             </div>
                         </div>
-                        <p class="form-label" style="background-color:mediumseagreen">Unidad de Medida de Compra</p>
+                        <p class="form-label" style="background-color: mediumseagreen; margin: -10px -15px 0 -15px">  Unidad de Medida de Compra</p>
                         <div class="form-group row">
                             <div class="col-md-3">
-                                <label><input class="form-check-input" type="checkbox" id="chkBalde"> Balde</label>
-                                <select id="selectBalde" class="form-control form-control-sm" data-live-search="true">
+                                <label><input class="form-check-input" type="checkbox" id="chkBaldeC"> Balde</label>
+                                <select id="selectBaldeC" class="form-control form-control-sm" data-live-search="true">
                                 </select>
                             </div>
                             <div class="col-md-3">
-                                <label><input class="form-check-input" type="checkbox" id="chkEnvase"> Envase</label>
-                                <select id="selectEnvase" class="form-control form-control-sm" data-live-search="true">
+                                <label><input class="form-check-input" type="checkbox" id="chkEnvaseC"> Envase</label>
+                                <select id="selectEnvaseC" class="form-control form-control-sm" data-live-search="true">
                                 </select>
                             </div>
                             <div class="col-md-3">
-                                <label><input class="form-check-input" type="checkbox" id="chkPaquete"> Paquete</label>
-                                <select id="selectPaquete" class="form-control form-control-sm" data-live-search="true">
+                                <label><input class="form-check-input" type="checkbox" id="chkPaqueteC"> Paquete</label>
+                                <select id="selectPaqueteC" class="form-control form-control-sm" data-live-search="true">
                                 </select>
                             </div>
                             <div class="col-md-3">
-                                <label><input class="form-check-input" type="checkbox" id="chkCilindro"> Cilindro</label>
-                                <select id="selectCilindro" class="form-control form-control-sm" data-live-search="true">
+                                <label><input class="form-check-input" type="checkbox" id="chkCilindroC"> Cilindro</label>
+                                <select id="selectCilindroC" class="form-control form-control-sm" data-live-search="true">
                                 </select>
                             </div>
                         </div>
@@ -576,7 +669,78 @@
             </div>
         </div>
     </div>
+</div>
 
+<div class="modal fade" id="modalMarca" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: darkslategrey; color: white">
+                <h5 class="modal-title"><i class="fas fa-stroopwafel"></i> Agregar Marca</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 15px 5px 0 5px; background-color: #CDDCCC; border: 3px solid #eee ">
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            <label for="selectCategoriaM" class="form-label">Categoria:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <select id="selectCategoriaM" class="form-control form-control-sm" data-live-search="true">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            <label for="txtNombreMarca" class="form-label">Nombre:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input class="form-control form-control-sm" id="txtNombreMarca">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnGuardarMarca">Guardar</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalTipo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: darkslategrey; color: white">
+                <h5 class="modal-title"><i class="fas fa-record-vinyl"></i> Agregar Tipo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 15px 5px 0 5px; background-color: #CDDCCC; border: 3px solid #eee ">
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            <label for="selectCategoriaT" class="form-label">Categoria:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <select id="selectCategoriaT" class="form-control form-control-sm" data-live-search="true">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            <label for="txtNombreTipo" class="form-label">Descripcion:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input class="form-control form-control-sm" id="txtNombreTipo">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnGuardarTipo">Guardar</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script src="~/Scripts/View/Venta/Venta.js"></script>

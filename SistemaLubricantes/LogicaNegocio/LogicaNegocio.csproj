@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AccesoDatos\AccesoDatos.csproj" />
     <ProjectReference Include="..\Entidades\Entidades.csproj" />
+    <ProjectReference Include="..\Utilitarios\Utilitarios.csproj" />
   </ItemGroup>
 
 </Project>
