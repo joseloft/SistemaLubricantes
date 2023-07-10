@@ -1,4 +1,5 @@
 ﻿var dataTipoCambio = [];
+var _tpID = 0;
 var _tipoCambio = 0;
 
 $(function () {
@@ -15,8 +16,10 @@ function mostrarTipoCambio() {
         dataType: 'json',
         success: function (data) {
 			dataTipoCambio = data.value;
-			$(txtTipoCambio).text(dataTipoCambio.tipoCambio.toFixed(2));
+            $(txtTipoCambio).text(dataTipoCambio.tipoCambio.toFixed(2));
+            _tpID = dataTipoCambio.tipoCambioID;
             _tipoCambio = dataTipoCambio.tipoCambio.toFixed(2);
+            localStorage.setItem("tpID", _tpID);
             localStorage.setItem("tipoCambio", _tipoCambio);
         }
     });
@@ -50,7 +53,7 @@ function GuardarTipoCambio() {
                     case null: bResult = true; break;
                     case 9:
                         sawl("Oops", data.message, "error"); break;
-                    default: sweet_alert_error("Opps", "Ocurrió un problema!", "error"); break;
+                    default: sweet_alert_error("Oops", "Ocurrió un problema!", "error"); break;
                 }
             }
             if (!bResult) return false;
