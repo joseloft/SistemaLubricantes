@@ -100,13 +100,13 @@ namespace AccesoDatos.Clientes.Implementacion
                     Ptelefono.Value = objCliente.telefono;
                     objCmd.Parameters.Add(Ptelefono);
 
-                    SqlParameter Pdni = new SqlParameter("@Pdni", SqlDbType.Char, 8);
-                    Pdni.Value = objCliente.dni;
-                    objCmd.Parameters.Add(Pdni);
+                    SqlParameter PtipoCliente = new SqlParameter("@Ptipo", SqlDbType.Char, 1);
+                    PtipoCliente.Value = objCliente.tipoCliente;
+                    objCmd.Parameters.Add(PtipoCliente);
 
-                    SqlParameter Pruc = new SqlParameter("@Pruc", SqlDbType.Char, 11);
-                    Pruc.Value = objCliente.ruc;
-                    objCmd.Parameters.Add(Pruc);                                       
+                    SqlParameter PnroDocumento = new SqlParameter("@Pdocumento", SqlDbType.Char, 11);
+                    PnroDocumento.Value = objCliente.nroDocumento;
+                    objCmd.Parameters.Add(PnroDocumento);                                       
 
                     objCnx.Open();
                     var dtr = objCmd.ExecuteReader();

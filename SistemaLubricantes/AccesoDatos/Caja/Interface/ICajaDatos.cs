@@ -13,5 +13,7 @@ namespace AccesoDatos.Caja.Interface
         bool ListarTipoComprobante(out DataTable objDtt);
         bool ListarTipoPago(out DataTable objDtt);
         bool GuardarComprobante(EntidadComprobante objComprobante, out string mensaje);
+        bool GuardarCredito(EntidadCredito objCredito, out string mensaje);
+        bool GuardarPago(EntidadPago objPago, out string mensaje);
     }
 }

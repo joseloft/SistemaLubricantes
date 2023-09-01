@@ -9,5 +9,6 @@ namespace AccesoDatos.Ventas.Interface
         bool GuardarVenta(EntidadVenta objVentas, out string mensaje);
         bool ListarVentasP(out DataTable objDtt);
         bool ListarDetalleVentasP(string codigo_venta, out DataTable objDtt);
+        bool AnularVenta(string codigo_venta, string codigo_usuario, out string mensaje);
     }
 }
