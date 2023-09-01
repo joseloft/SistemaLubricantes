@@ -17,5 +17,8 @@ namespace Entidades.Ventas
         public string moneda { get; set; }
         public decimal total { get; set; }
         public string estado { get; set; }
+        public string fecha_vencimiento { get; set; }
+        public decimal saldo { get; set; }
+        public int dias_credito { get; set; }
     }
 }

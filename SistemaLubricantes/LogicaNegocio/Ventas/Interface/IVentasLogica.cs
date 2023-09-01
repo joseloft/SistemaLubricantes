@@ -14,5 +14,6 @@ namespace LogicaNegocio.Ventas.Interface
         bool GuardarVenta(EntidadVenta objVentas, out string mensaje);
         bool ListarVentasP(out List<EntidadVentasPendientes> lstVentasP);
         bool ListarDetalleVentasP(string codigo_venta, out List<EntidadDetalleVentasPendientes> lstDetalleVentasP);
+        bool AnularVenta(string codigo_venta, string codigo_usuario, out string mensaje);
     }
 }

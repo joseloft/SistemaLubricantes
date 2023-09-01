@@ -516,6 +516,7 @@
     <Content Include="Content\js.3.7\jquery.validate.min.js" />
     <Content Include="Scripts\View\Caja\Caja.js" />
     <Content Include="Scripts\View\Cliente\Cliente.js" />
+    <Content Include="Scripts\View\Home\Home.js" />
     <Content Include="Scripts\View\Shared\Layout.js" />
     <Content Include="Scripts\View\Venta\Venta.js" />
     <Content Include="Web.config" />
@@ -560,7 +561,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\View\Home\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

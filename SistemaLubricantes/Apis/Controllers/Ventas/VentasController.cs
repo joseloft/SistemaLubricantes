@@ -157,5 +157,33 @@ namespace Apis.Controllers.Ventas
 
             return StatusCode((int)HttpStatusCode.OK, new JsonResult(lstDetalleVentasP));
         }
+
+        /// <summary>
+        /// Generic method to delete sales 
+        /// </summary>
+        /// <response code="200">Ok</response>
+        /// <response code="204">Not Conten - Respuesta en blanco</response>
+        /// <response code="400">Bad Request - Solicitud Errada o contenido incorrecto</response> 
+        /// <response code="404">Not Found - No se encontro información</response>   
+        /// <response code="500">Server Error - Errores no controlados</response> 
+        [HttpDelete("AnularVenta")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400, Type = typeof(ErrorAnswer))]
+        [ProducesResponseType(404, Type = typeof(ErrorAnswer))]
+        [ProducesResponseType(500, Type = typeof(ErrorAnswer))]
+        public ActionResult DeleteAnularVenta([Required] string codigo_venta, [Required] string codigo_usuario)
+        {
+            string mensaje;
+            if (!_ventasLogica.AnularVenta(codigo_venta, codigo_usuario, out mensaje))
+            {
+                return new JsonResult(new ErrorDetails()
+                {
+                    StatusCode = Convert.ToInt32(ConstantsError.ERROR_EN_SERVIDOR_CODIGO),
+                    Message = ConstantsError.ERROR_EN_SERVIDOR_MENSAJE
+                });
+            }
+            return StatusCode((int)HttpStatusCode.OK, new JsonResult(mensaje));
+
+        }
     }
 }

@@ -15,5 +15,7 @@ namespace LogicaNegocio.Caja.Interface
         bool ListarTipoComprobante(out List<EntidadTipoComprobante> lstComprobante);
         bool ListarTipoPago(out List<EntidadTipoPago> lstTipoPago);
         bool GuardarComprobante(EntidadComprobante objComprobante, out string mensaje);
+        bool GuardarCredito(EntidadCredito objCredito, out string mensaje);
+        bool GuardarPago(EntidadPago objPago, out string mensaje);
     }
 }

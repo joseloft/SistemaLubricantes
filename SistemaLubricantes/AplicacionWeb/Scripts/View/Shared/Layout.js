@@ -70,3 +70,44 @@ function GuardarTipoCambio() {
 	})
 	    
 }
+function ClearCache() {
+    sweet_alert_progressbar('Clearing Cache', '');
+    localStorage.clear();
+    sessionStorage.clear();
+    deleteAllCookies();
+    setTimeout(function () {
+        window.location = window.location.origin + "/Login/Index"
+    }, 3000);
+
+}
+function deleteAllCookies() {
+    var cookies = document.cookie.split(";");
+    for (var i = 0; i < cookies.length; i++)
+        deleteCookie(cookies[i].split("=")[0]);
+}
+function deleteCookie(name) {
+    setCookie(name, "", -7);    //dias expiración
+}
+function setCookie(name, value, expirydays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (expirydays * 24 * 60 * 60 * 1000));    //expirydays x 24horas (formato milisegundos). expirydays: dias expiración
+    var expires = "expires=" + d.toUTCString();
+    document.cookie = name + "=" + value + "; " + expires;
+}
+function logout() {
+    localStorage.clear();
+    sessionStorage.clear();
+    window.location = window.location.origin + "/Login/Index"
+}
+function sweet_alert_progressbar() {
+    Swal.fire({
+        imageUrl: '../images/logoOficial200.png',
+        with: "200",
+        title: 'EL TUMI',
+        html: 'Loading information...',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        allowEnterKey: false,
+    });
+    Swal.showLoading();
+}
