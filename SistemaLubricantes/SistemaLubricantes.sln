@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AplicacionWeb", "AplicacionWeb\AplicacionWeb.csproj", "{87A14DAA-408D-41B3-A2BC-424615611588}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0670CF53-E344-48D3-8ACF-5E389F9D241C} = {0670CF53-E344-48D3-8ACF-5E389F9D241C}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apis", "Apis\Apis.csproj", "{1CBC1EB5-1529-4FAD-A36D-6BA15382CB3E}"
 EndProject
@@ -11,8 +14,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogicaNegocio", "LogicaNego
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccesoDatos", "AccesoDatos\AccesoDatos.csproj", "{ECCC3A27-93A5-4BE8-876E-C68F834A6DB8}"
 	ProjectSection(ProjectDependencies) = postProject
-		{4BC7700D-072C-4383-BE4E-179EC02E71AF} = {4BC7700D-072C-4383-BE4E-179EC02E71AF}
 		{0670CF53-E344-48D3-8ACF-5E389F9D241C} = {0670CF53-E344-48D3-8ACF-5E389F9D241C}
+		{4BC7700D-072C-4383-BE4E-179EC02E71AF} = {4BC7700D-072C-4383-BE4E-179EC02E71AF}
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entidades", "Entidades\Entidades.csproj", "{0670CF53-E344-48D3-8ACF-5E389F9D241C}"
@@ -20,6 +23,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. CapaWeb", "1. CapaWeb", "{A0FBBD94-CF67-41D2-80EF-B20C33D05063}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. CapaApis", "2. CapaApis", "{403B661C-B8BD-451B-A921-D3E01B8637B0}"
+	ProjectSection(SolutionItems) = preProject
+		Apis\appsettings.senda.json = Apis\appsettings.senda.json
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. CapaNegocio", "3. CapaNegocio", "{49E1EE50-09C7-4CBC-BD56-3EE7254A763F}"
 EndProject
@@ -31,7 +37,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Configuracion", "Configurac
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6. Configuracion", "6. Configuracion", "{3ABD29A1-3F36-4FEB-AE7E-7A858577CD9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilitarios", "Utilitarios\Utilitarios.csproj", "{1A1B0E58-88E4-4AB9-BD92-C0078846F959}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utilitarios", "Utilitarios\Utilitarios.csproj", "{1A1B0E58-88E4-4AB9-BD92-C0078846F959}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "7. Utilitarios", "7. Utilitarios", "{CDE7C445-2786-4563-9EA1-A06F3E4EE035}"
 EndProject

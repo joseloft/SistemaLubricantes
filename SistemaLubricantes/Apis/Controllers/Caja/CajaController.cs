@@ -106,5 +106,59 @@ namespace Apis.Controllers.Caja
             return StatusCode((int)HttpStatusCode.OK, new JsonResult(mensaje));
 
         }
+        /// <summary>
+        /// Generic method to create credits 
+        /// </summary>
+        /// <response code="200">Ok</response>
+        /// <response code="204">Not Conten - Respuesta en blanco</response>
+        /// <response code="400">Bad Request - Solicitud Errada o contenido incorrecto</response> 
+        /// <response code="404">Not Found - No se encontro información</response>   
+        /// <response code="500">Server Error - Errores no controlados</response> 
+        [HttpPut("GuardarCredito")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400, Type = typeof(ErrorAnswer))]
+        [ProducesResponseType(404, Type = typeof(ErrorAnswer))]
+        [ProducesResponseType(500, Type = typeof(ErrorAnswer))]
+        public ActionResult PutGuardarCredito([Required][FromBody] EntidadCredito objCredito)
+        {
+            string mensaje;
+            if (!_cajaLogica.GuardarCredito(objCredito, out mensaje))
+            {
+                return new JsonResult(new ErrorDetails()
+                {
+                    StatusCode = Convert.ToInt32(ConstantsError.ERROR_EN_SERVIDOR_CODIGO),
+                    Message = ConstantsError.ERROR_EN_SERVIDOR_MENSAJE
+                });
+            }
+            return StatusCode((int)HttpStatusCode.OK, new JsonResult(mensaje));
+
+        }
+        /// <summary>
+        /// Generic method to create pays 
+        /// </summary>
+        /// <response code="200">Ok</response>
+        /// <response code="204">Not Conten - Respuesta en blanco</response>
+        /// <response code="400">Bad Request - Solicitud Errada o contenido incorrecto</response> 
+        /// <response code="404">Not Found - No se encontro información</response>   
+        /// <response code="500">Server Error - Errores no controlados</response> 
+        [HttpPut("GuardarPago")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400, Type = typeof(ErrorAnswer))]
+        [ProducesResponseType(404, Type = typeof(ErrorAnswer))]
+        [ProducesResponseType(500, Type = typeof(ErrorAnswer))]
+        public ActionResult PutGuardarPago([Required][FromBody] EntidadPago objPago)
+        {
+            string mensaje;
+            if (!_cajaLogica.GuardarPago(objPago, out mensaje))
+            {
+                return new JsonResult(new ErrorDetails()
+                {
+                    StatusCode = Convert.ToInt32(ConstantsError.ERROR_EN_SERVIDOR_CODIGO),
+                    Message = ConstantsError.ERROR_EN_SERVIDOR_MENSAJE
+                });
+            }
+            return StatusCode((int)HttpStatusCode.OK, new JsonResult(mensaje));
+
+        }
     }
 }

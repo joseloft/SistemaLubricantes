@@ -105,7 +105,10 @@ namespace LogicaNegocio.Ventas.Implementacion
                     forma_pago = row["forma_pago"].ToString(),
                     moneda = row["moneda"].ToString(),
                     total = Convert.ToDecimal(row["total"].ToString()),
-                    estado = row["estado"].ToString()
+                    estado = row["estado"].ToString(),
+                    fecha_vencimiento = row["fecha_vencimiento"].ToString(),
+                    saldo = Convert.ToDecimal(row["saldo"].ToString()),
+                    dias_credito = Convert.ToInt32(row["dias"].ToString())
                 };
                 lstVentasP.Add(objVentP);
             }
@@ -136,6 +139,10 @@ namespace LogicaNegocio.Ventas.Implementacion
                 lstDetalleVentasP.Add(objDetVentP);
             }
             return bRsl;
+        }
+        public bool AnularVenta(string codigo_venta, string codigo_usuario, out string mensaje)
+        {
+            return _ventasDatos.AnularVenta(codigo_venta, codigo_usuario, out mensaje);
         }
     }
 }

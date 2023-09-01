@@ -78,5 +78,13 @@ namespace LogicaNegocio.Caja.Implementacion
         {
             return _cajaDatos.GuardarComprobante(objComprobante, out mensaje);
         }
+        public bool GuardarCredito(EntidadCredito objCredito, out string mensaje)
+        {
+            return _cajaDatos.GuardarCredito(objCredito, out mensaje);
+        }
+        public bool GuardarPago(EntidadPago objPago, out string mensaje)
+        {
+            return _cajaDatos.GuardarPago(objPago, out mensaje);
+        }
     }
 }

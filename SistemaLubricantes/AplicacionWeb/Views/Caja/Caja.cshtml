@@ -102,15 +102,27 @@
                         <select id="selectPago" class="form-control form-control-sm" data-live-search="true">
                         </select>
                     </div>
-                    <div class="col-2" id="lblcredito">
-                        <label for="txtCredito">Dias de Credito:</label>
+                    <div class="col-2" id="divCredito">
+                        <label for="txtDiasCredito">Dias de Credito:</label>
                     </div>
-                    <div class="col-1" id="diasCredito">
-                        <input type="number" class="form-control form-control-sm" id="txtCredito">
+                    <div class="col-1" id="divDiasCredito">
+                        <input type="number" class="form-control form-control-sm" value="0" id="txtDiasCredito">
                     </div>
-                    <div class="col-3" id="diasNoCredito">
+                    <div class="col-1" id="divSaldo">
+                        <span style="color: white; background-color: darkred;font-size:12px;text-align:end">Saldo: </span><text style="color: white; background-color: darkred; font-size: 12px" id="txtSaldoVenta">                        
                     </div>
-                    <div class="col-2">
+                    <div class="col-2" id="divFV">
+                        <span style="color: white; background-color: darkred;font-size: 12px">FV: </span><text style="color: white; background-color: darkred; font-size: 12px" id="txtFV">
+                    </div>
+                    <div class="col-2" id="divPago">
+                        <a href="#" class="btn btn-primary btn-sm btn-icon-split transact" id="btnPagar" data-toggle="modal">
+                            <span class="icon text-white">
+                                <i class="fas fa-money-bill fa-sm"></i>
+                            </span>
+                            <span class="text">Pagar</span>
+                        </a>
+                    </div>
+                    <div class="col-5" id="divNoCredito">
                     </div>
                     <div class="col-3">
                         <a href="#" class="btn btn-info btn-sm btn-icon-split transact" id="btnEmitir" onclick="javascipt:return false;">
@@ -156,7 +168,7 @@
             <div class="card-header pt-1 card-header-title-filter">
                 <div class="form-group row">
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseVentas" aria-expanded="false" aria-controls="collapseVentas">
                             <strong>LISTA DE VENTAS SIN EMITIR</strong>
                             <i class="fas fa-angle-down arrow"></i>
                         </button>
@@ -165,21 +177,25 @@
                     </div>
                 </div>
             </div>
-            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+            <div id="collapseVentas" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card-body">
                     <div class="table-responsive" id="listaVentas">
                         <table id='tblLista' class='table table-cebra table-hover table-bordered' width="100%">
                             <thead style="background-color: #13213d; color: white; font-size: 12px; text-align: center">
                                 <tr>
                                     <td style="min-width: 25px;">N° Venta</td>
+                                    <td hidden>TipoDoc</td>
                                     <td style="min-width: 25px;">RUC/DNI</td>
                                     <td style="min-width: 200px;">Cliente</td>
                                     <td style="min-width: 40px;">Fecha Emision</td>
                                     <td style="min-width: 70px;">Forma de Pago</td>
                                     <td style="min-width: 25px;">Moneda</td>
                                     <td style="min-width: 20px;">Total</td>
-                                    <td style="min-width: 25px;">Condicion</td>
-                                    <td style="min-width: 10px;">Accion</td>
+                                    <td style="min-width: 20px;">Condicion</td>
+                                    <td style="min-width: 20px;">Accion</td>
+                                    <td hidden>Dias</td>
+                                    <td hidden>Saldo</td>
+                                    <td hidden>Vencimiento</td>
                                 </tr>
                             </thead>
                             <tbody style="font-size: 11px; text-align: center">
@@ -189,6 +205,55 @@
                         </table>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalPago" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: darkslategrey; color: white">
+                <h5 class="modal-title"><i class="fas fa-money-check-alt"></i> Registrar Pago</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12 col-sm-12 col-xs-12" style=" background-color: #54ba4c; border: 3px solid #134010; border-radius: 10px ">
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <label for="selectFormaPago" class="form-label">Forma de pago:</label>
+                        </div>
+                    </div>
+                    <div class="form-group row" style="margin-top:-10px">
+                        <div class="col-md-12">
+                            <select id="selectFormaPago" class="form-control form-control-sm" data-live-search="true">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            <label for="txtMonto" class="form-label">Monto:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input class="form-control form-control-sm" style="text-align:right" type="number" id="txtMonto">
+                        </div>
+                    </div>
+                    <div class="form-group row" id="divNuevoSaldo">
+                        <div class="col-md-12">
+                            <span style="color:darkred">Saldo: </span><text style="color:darkred" id="txtSaldo"></text>&nbsp;&nbsp;&nbsp;
+                            <button class="btn btn-info btn-sm btn-icon-split transact" id="btnAgregarPago">
+                                Agregar Pago
+                                <span class="icon text-white">
+                                    <i class="fas fa-plus fa-sm"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnGuardarPago">Guardar</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>

@@ -97,6 +97,7 @@ namespace AccesoDatos.Ventas.Implementacion
                     objCmd.Parameters.Add("@Pigv", SqlDbType.Decimal).Value = objVentas.igv;
                     objCmd.Parameters.Add("@Pplaca", SqlDbType.Char, 8).Value = objVentas.placa;
                     objCmd.Parameters.Add("@Pcod_tc", SqlDbType.Int).Value = objVentas.codigo_tc;
+                    objCmd.Parameters.Add("@Pcondicion", SqlDbType.Bit).Value = objVentas.condicion;
 
                     var dtw = new DataTable();
                     dtw.Columns.Add("cod_venta", typeof(string));
@@ -217,6 +218,63 @@ namespace AccesoDatos.Ventas.Implementacion
                     _objDtt.Load(objDtr);
                     objDtt = _objDtt;
                     bRsl = true;
+                }
+            }
+            catch (System.Exception ex)
+            {
+                throw; //new System.Exception(ex.Message);
+            }
+            finally
+            {
+                try
+                {
+                    if (objDtr != null && !objDtr.IsClosed) objDtr.Close();
+                    if (objCnx != null && objCnx.State == ConnectionState.Open)
+                    {
+                        objCnx.Close();
+                    }
+                }
+                catch (System.Exception)
+                {
+
+                }
+            }
+
+            return bRsl;
+        }
+        public bool AnularVenta(string codigo_venta, string codigo_usuario, out string mensaje)
+        {
+            SqlConnection objCnx = null;
+            SqlDataReader objDtr = null;
+            var bRsl = false;
+            mensaje = "";
+            try
+            {
+                objCnx = new SqlConnection(this.context);
+                using (var objCmd = new SqlCommand("[dbo].[sp_anular_venta]", objCnx))
+                {
+                    objCmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlParameter Pcodigo_venta = new SqlParameter("@Pcod_venta", SqlDbType.Char, 8);
+                    Pcodigo_venta.Value = codigo_venta;
+                    objCmd.Parameters.Add(Pcodigo_venta);
+
+                    SqlParameter Pcodigo_usuario = new SqlParameter("@Pcod_usuario", SqlDbType.Char, 8);
+                    Pcodigo_usuario.Value = codigo_usuario;
+                    objCmd.Parameters.Add(Pcodigo_usuario);
+
+                    objCnx.Open();
+                    var dtr = objCmd.ExecuteReader();
+                    if (!dtr.HasRows)
+                    {
+                        mensaje = "";
+                        return bRsl;
+                    }
+                    while (dtr.Read())
+                    {
+                        bRsl = true;
+                        mensaje = dtr[0].ToString();
+                    }
                 }
             }
             catch (System.Exception ex)

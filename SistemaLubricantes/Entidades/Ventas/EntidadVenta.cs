@@ -19,6 +19,7 @@ namespace Entidades.Ventas
         public string codigo_usuario { get; set; }
         public string placa { get; set; }
         public string codigo_tc { get; set; }
+        public bool condicion { get; set; }
         public List<EntidadVentaDetalle> detalleVenta { get; set; }
     }
     public class EntidadVentaDetalle

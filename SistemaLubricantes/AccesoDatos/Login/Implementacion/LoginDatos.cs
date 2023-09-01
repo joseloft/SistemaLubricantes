@@ -1,24 +1,28 @@
-﻿using AccesoDatos.Home.Interface;
+﻿using AccesoDatos.Login.Interface;
 using Configuracion.Implementacion;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using System;
+using System.Collections.Generic;
 using System.Data;
-using Entidades.Home;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace AccesoDatos.Home.Implementacion
+namespace AccesoDatos.Login.Implementacion
 {
-    public class TipoCambioDatos : ITipoCambioDatos
+    public class LoginDatos : ILoginDatos
     {
         private readonly string context;
-        public TipoCambioDatos(IConfiguration _configuration)
+        public LoginDatos(IConfiguration _configuration)
         {
             context = new ConfiguracionData(_configuration).GetConnectionString("ConexionBdComercio");
         }
-        public TipoCambioDatos(string _DbConexion)
+        public LoginDatos(string _DbConexion)
         {
             context = _DbConexion;
         }
-        public bool ListarTipoCambio(out DataTable objDtt)
+        public bool Autentificacion(string usuario, string contrasenia, out DataTable objDtt)
         {
             SqlConnection objCnx = null;
             SqlDataReader objDtr = null;
@@ -26,9 +30,18 @@ namespace AccesoDatos.Home.Implementacion
             try
             {
                 objCnx = new SqlConnection(this.context);
-                using (var objCmd = new SqlCommand("[dbo].[sp_listar_TC_actual]", objCnx))
+                using (var objCmd = new SqlCommand("[dbo].[sp_autentificacionForLogin]", objCnx))
                 {
                     objCmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlParameter Pusuario = new SqlParameter("@Pusuario", SqlDbType.Char, 8);
+                    Pusuario.Value = usuario;
+                    objCmd.Parameters.Add(Pusuario);
+
+                    SqlParameter Pcontrasenia = new SqlParameter("@Pcontraseña", SqlDbType.VarChar, 50);
+                    Pcontrasenia.Value = contrasenia;
+                    objCmd.Parameters.Add(Pcontrasenia);
+
                     objCnx.Open();
                     objDtr = objCmd.ExecuteReader();
                     var _objDtt = new DataTable();
@@ -59,22 +72,25 @@ namespace AccesoDatos.Home.Implementacion
 
             return bRsl;
         }
-        public bool GuardarTipoCambio(EntidadTipoCambio objTipoCambio, out string mensaje)
+        public bool CambiarClave(string codigo_usuario, string nueva_clave, out string mensaje)
         {
-            objTipoCambio.ReplaceNull();
             SqlConnection objCnx = null;
             var bRsl = false;
             mensaje = "";
             try
             {
                 objCnx = new SqlConnection(this.context);
-                using (var objCmd = new SqlCommand("[dbo].[sp_ingreso_TC]", objCnx))
+                using (var objCmd = new SqlCommand("[dbo].[sp_actualizar_contraseña]", objCnx))
                 {
                     objCmd.CommandType = CommandType.StoredProcedure;
 
-                    SqlParameter Pnombres = new SqlParameter("@PTipoCambio", SqlDbType.Decimal);
-                    Pnombres.Value = objTipoCambio.tipoCambio;
-                    objCmd.Parameters.Add(Pnombres);
+                    SqlParameter Pcodigo_usuario = new SqlParameter("@Pcodigo_usuario", SqlDbType.Char, 8);
+                    Pcodigo_usuario.Value = codigo_usuario;
+                    objCmd.Parameters.Add(Pcodigo_usuario);
+
+                    SqlParameter Pnueva_clave = new SqlParameter("@Pnueva_contraseña", SqlDbType.VarChar, 100);
+                    Pnueva_clave.Value = nueva_clave;
+                    objCmd.Parameters.Add(Pnueva_clave);
 
                     objCnx.Open();
                     var dtr = objCmd.ExecuteReader();
@@ -88,7 +104,6 @@ namespace AccesoDatos.Home.Implementacion
                         bRsl = true;
                         mensaje = dtr[0].ToString();
                     }
-
                 }
             }
             catch (System.Exception ex)
