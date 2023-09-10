@@ -9,7 +9,7 @@ $(function () {
 function mostrarTipoCambio() {
     $.ajax({
         type: "GET",
-        url: "https://localhost:44380/api/home/ListarTipoCambio",
+        url: getPath() + "api/home/ListarTipoCambio",
         async: false,
         headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0' },
         contentType: 'application/json; charset=utf-8',
@@ -38,7 +38,7 @@ function GuardarTipoCambio() {
 
 	$.ajax({
 		type: 'POST',
-		url: "https://localhost:44380/api/home/GuardarTipoCambio",
+        url: getPath() + "api/home/GuardarTipoCambio",
 		async: false,
 		headers: {
 			'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0'
