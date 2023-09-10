@@ -13,3 +13,9 @@
 
     return uriApiComercio;
 };
+
+const HOST_SENDA = "api/senda/sendaservicecenter";
+
+const ENDPOINT_EMISION = "/EmitirComprobante";
+const ENDPOINT_ANULACION = "/AnularComprobante";
+const ENDPOINT_CONSULTACION = "/ConsultarComprobante";

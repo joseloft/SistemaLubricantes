@@ -98,7 +98,7 @@ $(document).ready(function () {
             var html = '';
             // Llamar a la API para obtener los detalles del elemento
             $.ajax({
-                url: "https://localhost:44380/api/ventas/ListarDetalleVentaPendientes?codigo_venta=" + codigo_venta,
+                url: getPath() + "api/ventas/ListarDetalleVentaPendientes?codigo_venta=" + codigo_venta,
                 method: 'GET',
                 success: function (data) {
                     // Crear el contenido HTML de los detalles
@@ -417,6 +417,9 @@ $(document).ready(function () {
 
         if (cantidad > stock) {
             swal("Falta STOCK!", "La cantidad del producto es mayor al stock.", "warning");
+            $(this).closest("tr").find('input.cantidad').val(0);
+            $(this).closest("tr").find('td.total').text(0);
+            calcularTotal();
             return;
         }
 
@@ -461,7 +464,7 @@ function listarClientes() {
     loadCombo([], 'selectCliente', true);
     $.ajax({
         type: "GET",
-        url: "https://localhost:44380/api/clientes/ListarClientes",
+        url: getPath() + "api/clientes/ListarClientes",
         async: false,
         headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0' },
         contentType: 'application/json; charset=utf-8',
@@ -490,7 +493,7 @@ function listarProductos() {
 
     $.ajax({
         type: "GET",
-        url: "https://localhost:44380/api/productos/ListarProductos",
+        url: getPath() + "api/productos/ListarProductos",
         async: false,
         headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0' },
         contentType: 'application/json; charset=utf-8',
@@ -545,7 +548,7 @@ function buscarCliente() {
 
     $.ajax({
         type: "GET",
-        url: "https://localhost:44380/api/clientes/BuscarClientes?cod_cliente=" + cod_cliente + "&documento=" + documento + "&placa=" + placa,
+        url: getPath() + "api/clientes/BuscarClientes?cod_cliente=" + cod_cliente + "&documento=" + documento + "&placa=" + placa,
         async: false,
         headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0' },
         contentType: 'application/json; charset=utf-8',
@@ -593,7 +596,7 @@ function listarLastVentas() {
 
         ajax: {
             type: "GET",
-            url: "https://localhost:44380/api/ventas/ListaUltimasVentas?placa=" + placa + "&cod_cliente=" + cod_cliente,
+            url: getPath() + "api/ventas/ListaUltimasVentas?placa=" + placa + "&cod_cliente=" + cod_cliente,
             async: false,
             headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0' },
             contentType: 'application/json; charset=utf-8',
@@ -652,7 +655,7 @@ function mostrarLastDetalle(xthis) {
 
         // Llamar a la API para obtener los detalles del elemento
         $.ajax({
-            url: "https://localhost:44380/api/ventas/ListarDetalleVentaPendientes?codigo_venta=" + codigo_venta,
+            url: getPath() + "api/ventas/ListarDetalleVentaPendientes?codigo_venta=" + codigo_venta,
             method: 'GET',
             success: function (data) {
                 // Crear el contenido HTML de los detalles
@@ -699,7 +702,7 @@ function guardarCliente() {
 
     $.ajax({
         type: 'POST',
-        url: "https://localhost:44380/api/clientes/GuardarClientes",
+        url: getPath() + "api/clientes/GuardarClientes",
         async: false,
         headers: {
             'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0'
@@ -872,7 +875,7 @@ function limpiarProductos() {
 function cargarProductos() {
     $.ajax({
         type: "GET",
-        url: "https://localhost:44380/api/productos/ObtenerCodigoProducto",
+        url: getPath() + "api/productos/ObtenerCodigoProducto",
         async: false,
         headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0' },
         contentType: 'application/json; charset=utf-8',
@@ -886,7 +889,7 @@ function cargarProductos() {
     loadCombo([], 'selectMoneda', false);
     $.ajax({
         type: "GET",
-        url: "https://localhost:44380/api/productos/ListarMoneda",
+        url: getPath() + "api/productos/ListarMoneda",
         async: false,
         headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0' },
         contentType: 'application/json; charset=utf-8',
@@ -911,7 +914,7 @@ function cargarProductos() {
     loadCombo([], 'selectCategoria', false);
     $.ajax({
         type: "GET",
-        url: "https://localhost:44380/api/productos/ListarCategoria",
+        url: getPath() + "api/productos/ListarCategoria",
         async: false,
         headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0' },
         contentType: 'application/json; charset=utf-8',
@@ -937,7 +940,7 @@ function cargarProductos() {
     loadCombo([], 'selectBaldeC', false);
     $.ajax({
         type: "GET",
-        url: "https://localhost:44380/api/productos/ListarBalde?parametro=" + 1,
+        url: getPath() + "api/productos/ListarBalde?parametro=" + 1,
         async: false,
         headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0' },
         contentType: 'application/json; charset=utf-8',
@@ -965,7 +968,7 @@ function cargarProductos() {
     loadCombo([], 'selectEnvaseC', false);
     $.ajax({
         type: "GET",
-        url: "https://localhost:44380/api/productos/ListarEnvase?parametro=" + 2,
+        url: getPath() + "api/productos/ListarEnvase?parametro=" + 2,
         async: false,
         headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0' },
         contentType: 'application/json; charset=utf-8',
@@ -993,7 +996,7 @@ function cargarProductos() {
     loadCombo([], 'selectPaqueteC', false);
     $.ajax({
         type: "GET",
-        url: "https://localhost:44380/api/productos/ListarPaquete?parametro=" + 3,
+        url: getPath() + "api/productos/ListarPaquete?parametro=" + 3,
         async: false,
         headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0' },
         contentType: 'application/json; charset=utf-8',
@@ -1021,7 +1024,7 @@ function cargarProductos() {
     loadCombo([], 'selectCilindroC', false);
     $.ajax({
         type: "GET",
-        url: "https://localhost:44380/api/productos/ListarCilindro?parametro=" + 4,
+        url: getPath() + "api/productos/ListarCilindro?parametro=" + 4,
         async: false,
         headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0' },
         contentType: 'application/json; charset=utf-8',
@@ -1051,7 +1054,7 @@ function filtroCategoria(pCategoria) {
     loadCombo([], 'selectTipo', false);
     $.ajax({
         type: "GET",
-        url: "https://localhost:44380/api/productos/ListarTipo?codigoCategoria=" + pCategoria,
+        url: getPath() + "api/productos/ListarTipo?codigoCategoria=" + pCategoria,
         async: false,
         headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0' },
         contentType: 'application/json; charset=utf-8',
@@ -1076,7 +1079,7 @@ function filtroCategoria(pCategoria) {
     loadCombo([], 'selectMarca', false);
     $.ajax({
         type: "GET",
-        url: "https://localhost:44380/api/productos/ListarMarca?codigoCategoria=" + pCategoria,
+        url: getPath() + "api/productos/ListarMarca?codigoCategoria=" + pCategoria,
         async: false,
         headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0' },
         contentType: 'application/json; charset=utf-8',
@@ -1220,7 +1223,7 @@ function guardarMarca() {
 
     $.ajax({
         type: "PUT",
-        url: "https://localhost:44380/api/productos/GuardarMarca?categoriaID=" + cod_categoria + "&nombre=" + nombre,
+        url: getPath() + "api/productos/GuardarMarca?categoriaID=" + cod_categoria + "&nombre=" + nombre,
         async: false,
         headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0' },
         contentType: 'application/json; charset=utf-8',
@@ -1262,7 +1265,7 @@ function guardarTipo() {
 
     $.ajax({
         type: "PUT",
-        url: "https://localhost:44380/api/productos/GuardarTipo?categoriaID=" + cod_categoria + "&descripcion=" + descripcion,
+        url: getPath() + "api/productos/GuardarTipo?categoriaID=" + cod_categoria + "&descripcion=" + descripcion,
         async: false,
         headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0' },
         contentType: 'application/json; charset=utf-8',
@@ -1324,7 +1327,7 @@ function guardarProductos() {
 
     $.ajax({
         type: 'POST',
-        url: "https://localhost:44380/api/productos/GuardarProductos",
+        url: getPath() + "api/productos/GuardarProductos",
         async: false,
         headers: {
             'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0'
@@ -1509,8 +1512,8 @@ function calcularTotal() {
         montoTotal += parseFloat($(this).text());
     });
 
-    igv = montoTotal * 0.18;
-    subTotal = montoTotal - igv;
+    subTotal = montoTotal / 1.18;
+    igv = montoTotal - subTotal;
     $("#iptSubTotal").val(subTotal.toFixed(2));
     $("#iptIGV").val(igv.toFixed(2));
     $("#iptTotal").val(montoTotal.toFixed(2));
@@ -1550,8 +1553,8 @@ function guardarVenta() {
         let cod_prod = $(tr).find('td.codigo').text();
         let cantidad = $(tr).find('input.cantidad').val();
         let pre_venta = $(tr).find('td.total').text();
-        let igv = pre_venta * 0.18;
-        let subtotal = pre_venta * 0.82;
+        let subtotal = pre_venta / 1.18;
+        let igv = pre_venta - subtotal;        
         let monto_real = $(tr).find('td.monto').text();
 
         item.cod_prod = cod_prod;
@@ -1566,7 +1569,7 @@ function guardarVenta() {
 
     $.ajax({
         type: 'POST',
-        url: "https://localhost:44380/api/ventas/GuardarVenta",
+        url: getPath() + "api/ventas/GuardarVenta",
         async: false,
         headers: {
             'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0'

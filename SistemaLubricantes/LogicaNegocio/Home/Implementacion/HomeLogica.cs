@@ -120,10 +120,11 @@ namespace LogicaNegocio.Home.Implementacion
             }
             DataRow dttTotalVentas = objDts.Tables[0].Rows[0];
             DataRow dttCantidadVentas = objDts.Tables[1].Rows[0];
-            DataRow dttClientesNuevos = objDts.Tables[2].Rows[0];
+            DataRow dttCreditos = objDts.Tables[2].Rows[0];
             DataRow dttFacturacion = objDts.Tables[3].Rows[0];
 
             objDashboardIndicadores = new EntidadDashboardIndicadores();
+
             objDashboardIndicadores.objTotalVentas = new EntidadTotalVentas()
             {
                 reporte = dttTotalVentas["reporte"].ToString(),
@@ -134,10 +135,10 @@ namespace LogicaNegocio.Home.Implementacion
                 reporte = dttCantidadVentas["reporte"].ToString(),
                 cantidad = int.Parse(dttCantidadVentas["cantidad"].ToString())
             };
-            objDashboardIndicadores.objClientesNuevos = new EntidadClientesNuevos()
+            objDashboardIndicadores.objCreditos = new EntidadCreditos()
             {
-                reporte = dttClientesNuevos["reporte"].ToString(),
-                cantidad = int.Parse(dttClientesNuevos["cantidad"].ToString())
+                reporte = dttCreditos["reporte"].ToString(),
+                montoPago = decimal.Parse(dttCreditos["montoPago"].ToString())
             };
             objDashboardIndicadores.objFacturacion = new EntidadFacturacion()
             {
