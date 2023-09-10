@@ -6,17 +6,18 @@ var dataCredito = [];
 var dataContado = [];
 var dataTotalVentas = [];
 var dataCantidadVentas = [];
-var dataClientesNuevos = [];
+var dataCreditos = [];
 var dataFacturacion = [];
 var dataProductosStock = [];
 var dataVentasComprobante = [];
 var dataCreditosVencer = [];
 var dataClientesCorreo = [];
+
 $(document).ready(function () {
 
     $.ajax({
         type: "PUT",
-        url: "https://localhost:44380/api/home/DashboardPagos",
+        url: getPath() + "api/home/DashboardPagos",
         async: false,
         headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0' },
         contentType: 'application/json; charset=utf-8',
@@ -47,7 +48,7 @@ $(document).ready(function () {
 
     $.ajax({
         type: "PUT",
-        url: "https://localhost:44380/api/home/DashboardIndicadores",
+        url: getPath() + "api/home/DashboardIndicadores",
         async: false,
         headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0' },
         contentType: 'application/json; charset=utf-8',
@@ -61,8 +62,8 @@ $(document).ready(function () {
                 dataCantidadVentas = data.value.objCantidadVentas;
                 $(cantidadVentas).text(dataCantidadVentas.cantidad);
 
-                dataClientesNuevos = data.value.objClientesNuevos;
-                $(clientesNuevos).text(dataClientesNuevos.cantidad);
+                dataCreditos = data.value.objCreditos;
+                $(creditos).text(dataCreditos.montoPago);
 
                 dataFacturacion = data.value.objFacturacion;
                 $(facturacion).text(dataFacturacion.montoPago);
@@ -82,7 +83,7 @@ function poblarNotificaciones() {
 
     $.ajax({
         type: "PUT",
-        url: "https://localhost:44380/api/home/DashboardNotificaciones",
+        url: getPath() + "api/home/DashboardNotificaciones",
         async: false,
         headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0' },
         contentType: 'application/json; charset=utf-8',

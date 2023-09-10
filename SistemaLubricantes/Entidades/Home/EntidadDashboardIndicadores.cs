@@ -10,7 +10,7 @@ namespace Entidades.Home
     {
         public EntidadTotalVentas objTotalVentas { get; set; }
         public EntidadCantidadVentas objCantidadVentas { get; set; }
-        public EntidadClientesNuevos objClientesNuevos { get; set; }
+        public EntidadCreditos objCreditos { get; set; }
         public EntidadFacturacion objFacturacion { get; set; }
     }
     public class EntidadTotalVentas
@@ -23,10 +23,10 @@ namespace Entidades.Home
         public string reporte { get; set; }
         public int cantidad { get; set; }
     }
-    public class EntidadClientesNuevos
+    public class EntidadCreditos
     {
         public string reporte { get; set; }
-        public int cantidad { get; set; }
+        public decimal montoPago { get; set; }
     }
     public class EntidadFacturacion
     {

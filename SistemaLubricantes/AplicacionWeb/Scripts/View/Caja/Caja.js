@@ -3,6 +3,7 @@ var dataVentasP = [];
 var dataComprobante = [];
 var dataTipoPago = [];
 var _saldo = 0;
+var dataEnvio = [];
 $(document).ready(function () {
     $.LoadingOverlay("show");
     
@@ -40,6 +41,16 @@ $(document).ready(function () {
             document.getElementById('divPago').style.display = 'block';
             document.getElementById('divNoCredito').style.display = 'none';
         }
+    });
+    $(document).on("change", "#selectComprobante", function () {
+        if ($("#selectNroVenta").val() != '')
+        {
+            if ($(txtDocumento).val().trim() == '0' && $("#selectComprobante").val() == '02') {
+                listarTipoComprobante();
+                swal('No se puede facturar!', 'Cliente generico solo admite boleta', "warning");
+                return;
+            }
+        }        
     });
     $('#btnPagar').click(function () {
         if ($(txtDiasCredito).val() == 0) {
@@ -81,7 +92,7 @@ function listarVentasPendientes() {
 
     $.ajax({
         type: "GET",
-        url: "https://localhost:44380/api/ventas/ListarVentasPendientes",
+        url: getPath() + "api/ventas/ListarVentasPendientes",
         async: false,
         headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0' },
         contentType: 'application/json; charset=utf-8',
@@ -149,14 +160,13 @@ function listarVentasPendientes() {
             loadCombo(dataVentasP, 'selectNroVenta', true, 'Seleccione la venta');
             $('selectNroVenta').selectpicker('refresh');
         }
-    });    
-            
+    });            
 }
 function listarTipoComprobante() {
     loadCombo([], 'selectComprobante', false);
     $.ajax({
         type: "GET",
-        url: "https://localhost:44380/api/caja/ListarTipoComprobante",
+        url: getPath() + "api/caja/ListarTipoComprobante",
         async: false,
         headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0' },
         contentType: 'application/json; charset=utf-8',
@@ -182,7 +192,7 @@ function listarTipoPago(){
     loadCombo([], 'selectPago', false);
     $.ajax({
         type: "GET",
-        url: "https://localhost:44380/api/caja/ListarTipoPago",
+        url: getPath() + "api/caja/ListarTipoPago",
         async: false,
         headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0' },
         contentType: 'application/json; charset=utf-8',
@@ -267,7 +277,7 @@ function listarDetalleVenta(codigo_venta) {
 
     $.ajax({
         type: "GET",
-        url: "https://localhost:44380/api/ventas/ListarDetalleVentaPendientes?codigo_venta=" + codigo_venta,
+        url: getPath() + "api/ventas/ListarDetalleVentaPendientes?codigo_venta=" + codigo_venta,
         async: false,
         headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0' },
         contentType: 'application/json; charset=utf-8',
@@ -314,7 +324,7 @@ function guardarPago() {
 
         $.ajax({
             type: 'PUT',
-            url: "https://localhost:44380/api/caja/GuardarCredito",
+            url: getPath() + "api/caja/GuardarCredito",
             async: false,
             headers: {
                 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0'
@@ -342,7 +352,7 @@ function guardarPago() {
 
     $.ajax({
         type: 'PUT',
-        url: "https://localhost:44380/api/caja/GuardarPago",
+        url: getPath() + "api/caja/GuardarPago",
         async: false,
         headers: {
             'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0'
@@ -416,7 +426,7 @@ function guardarComprobante() {
 
         $.ajax({
             type: 'PUT',
-            url: "https://localhost:44380/api/caja/GuardarPago",
+            url: getPath() + "api/caja/GuardarPago",
             async: false,
             headers: {
                 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0'
@@ -446,7 +456,7 @@ function guardarComprobante() {
 
     $.ajax({
         type: 'POST',
-        url: "https://localhost:44380/api/caja/GuardarComprobante",
+        url: getPath() + "api/caja/GuardarComprobante",
         async: false,
         headers: {
             'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0'
@@ -455,23 +465,13 @@ function guardarComprobante() {
         dataType: 'json',
         data: JSON.stringify(objComprobante),
         success: function (data) {
-            let bResult = false;
-            if (data.hasOwnProperty('statusCode')) {
-                switch (data.statusCode) {
-                    case null: bResult = true; break;
-                    case 9:
-                        swal("Oops", data.message, "error"); break;
-                    default: swal("Oops", "Ocurrió un problema!", "error"); break;
-                }
-            }
-            if (!bResult) return false;
-            swal("Buen trabajo!", data.value, "success");
+            enviarComprobante(codigo_venta);            
         },
         error: function (datoError) {
-            swal("Oops!", "No se pudo guardar el cambio.", "error");
+            swal("Oops!", "No se pudo registrar el comprobante.", "error");
         },
         complete: function () {
-            limpiarComprobante();
+            limpiarComprobante();            
         }
     })
 }
@@ -519,6 +519,24 @@ function limpiarComprobante() {
     document.getElementById('divNuevoSaldo').style.display = 'none';
     $("table#tblDetalle").DataTable().destroy();
     $("table#tblDetalle>tbody").empty();
+}
+function enviarComprobante(codigo_venta) {
+    let sUrlEndPoint = getPath() + HOST_SENDA + ENDPOINT_EMISION +"?nro_venta=" + codigo_venta;
+    $.ajax({
+        type: "POST",
+        url: sUrlEndPoint,
+        headers: {
+            'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0'
+        },
+        async: false,
+        success: function (data) {
+            var dataEnvio = JSON.parse(data);
+            let type = dataEnvio.type;
+            let mensaje = dataEnvio.cpe.substr(3, 12) + dataEnvio.title.substring(4);
+            let text = (type == 'success') ? "Buen trabajo!" : "Ocurrió un error";
+            swal(text, mensaje, type);
+        }
+    });
 }
 function verVenta(xthis) {
     let nroVenta = $(xthis).closest("tr").find('.nro_venta').text();
@@ -569,7 +587,7 @@ function confirmarAnulacionVenta(codigo_venta, codigo_usuario) {
 
     $.ajax({
         type: 'DELETE',
-        url: "https://localhost:44380/api/ventas/AnularVenta?codigo_venta=" + codigo_venta + "&codigo_usuario=" + codigo_usuario,
+        url: getPath() + "api/ventas/AnularVenta?codigo_venta=" + codigo_venta + "&codigo_usuario=" + codigo_usuario,
         async: false,
         headers: {
             'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0'
